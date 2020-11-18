@@ -1,6 +1,6 @@
 const Shotter = {
 	data: ()=>({
-		epoch: (0 + 17*60 + 51)*1000
+		epoch: 0
 	}),
 	created: function(){
 		this.connectSocket()
@@ -8,14 +8,27 @@ const Shotter = {
 	methods: {
 		connectSocket(){
 			this.socket = new WebSocket("ws://18.133.229.150:8080")
-			this.socket.addEventListener("message",event=>console.log(event))
+			this.socket.addEventListener("message",this.eventHandler)
 		},
+		eventHandler(event){
+			if(event.data){
+				let json = {}
+				try{
+					json = JSON.parse(event.data)
+				} catch (e) {
+					console.error(`I hate this ${event}`)
+				}
+				if(json.position){
+					this.epoch = position * 1000;
+				}
+			}
+		}
 	},
 	computed: {
 		recentLines: function(){
-			let oldest = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
+			let oldest = this.$options.allLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
 			console.log(oldest)
-			return this.$options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
+			return this.$options.allLines.slice(Math.max(0,oldest-5),oldest).reverse()
 		} 
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
 		//Need player->Character and Character->player here
