@@ -14,6 +14,13 @@ const Shotter = {
 	allLines: lines.all,
 	players : ["Alex", "Clare", "Nick", "Megan", "Rich", "Soph"],
 	characters: ["Harry", "Ron", "Hermione"],
+	template: `
+		<div>
+			<film-state></film-state>
+			<player-state></player-state>
+			<recent-lines v:for="line in recentLines" :key = "line.lineNumber"></recent-lines>
+		</div>
+	`
 }
 
 const ShotterApp = Vue.createApp(Shotter)
