@@ -25,15 +25,17 @@ const Shotter = {
 		},
 		characterForPlayer(player){		
 			let playerIndex = this.$options.players.indexOf(player)
-			let characterIndex =  (playerIndex - this.currentLine.voldeCount + this.paddedCharacters.length) % this.paddedCharacters.length
+			let characterIndex =  (playerIndex - this.currentVoldeCount + this.paddedCharacters.length) % this.paddedCharacters.length
 			return this.paddedCharacters[characterIndex]	
 		}
 	},
 	computed: {
-		currentLine: function(){
+		currentVoldeCount: function(){
+			return this.currentLine.voldeCount || 0;
+		},
+		currentLine : function(){
 			let line = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
-			if(line) return line
-			else return {voldeCount:0}
+			return line || {};
 		},
 		paddedCharacters: function(){
 			return this.$options.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
