@@ -20,8 +20,8 @@ const Shotter = {
 			<player-state></player-state>
 			<div v-for = "line in recentLines">
 				<recent-line
-					:characters="characters"
-					:players="players"
+					:characters="$options.characters"
+					:players="$options.players"
 					:line="line"
 				></recent-line>
 			</div>
