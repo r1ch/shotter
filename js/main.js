@@ -1,5 +1,7 @@
 const Shotter = {
-	data: ()=>({}),
+	data: ()=>({
+		
+	}),
 	computed: {
 		recentLines: function(){
 			let oldest = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
@@ -12,17 +14,22 @@ const Shotter = {
 	allLines: lines.all,
 	players : ["Alex", "Clare", "Nick", "Megan", "Rich", "Soph"],
 	characters: ["Harry", "Ron", "Hermione"],
-	template:`
-		  <div id="app">
-		    <input type = "text" v-model="epoch"> 
-		    <imbibe v-for="line in recentLines" :key="line.lineNumber" :line="line" :players="$options.players" :characters="$options.characters"></imbibe>
-		  </div>
-	`
 }
 
 const ShotterApp = Vue.createApp(Shotter)
 
-ShotterApp.component('imbibe', {
+Shotter.component('film-state',{
+	data: ()=>({}),
+	template: `<div>It's a film</div>`
+})
+
+Shotter.component('player-state',{
+	data: ()=>({}),
+	template: `<div>Players be playing</div>`
+})
+
+
+ShotterApp.component('recent-lines', {
 	data: () => ({}),
 	methods: {
 		playerFromCharacter: function(character) {
