@@ -44,7 +44,7 @@ ShotterApp.component('player-state',{
 
 ShotterApp.component('recent-line', {
 	data: () => ({}),
-	props: ["line"],
+	props: ["line","characters","players"],
 	methods: {
 		playerFromCharacter: function(character) {
 			let characterIndex = this.characters.indexOf(character)
