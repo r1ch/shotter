@@ -16,10 +16,10 @@ const Shotter = {
 				try{
 					json = JSON.parse(event.data)
 				} catch (e) {
-					console.error(`I hate this ${event}`)
+					console.error(`I hate this ${JSON.stringify(event)}`)
 				}
 				if(json.position){
-					this.epoch = position * 1000;
+					this.epoch = json.position * 1000;
 				}
 			}
 		}
