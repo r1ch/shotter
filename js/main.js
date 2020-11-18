@@ -22,16 +22,26 @@ const Shotter = {
 					this.epoch = json.position * 1000;
 				}
 			}
+		},
+		characterForPlayer(player){		
+			let playerIndex = this.$options.players.indexOf(player)
+			let characterIndex =  (playerIndex - this.line.voldeCount + paddedCharacters.length) % paddedCharacters.length
+			return paddedCharacters[characterIndex]	
 		}
 	},
 	computed: {
+		paddedCharacters: function(){
+			return this.$options.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
+		},
 		recentLines: function(){
 			let oldest = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
 			console.log(oldest)
 			return this.$options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
-		} 
+		},
+		currentPlayers: function(){
+			return this.$options.players.map(player=>({character:characterForPlayer(player),player:player}));
+		}
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
-		//Need player->Character and Character->player here
 	},
 	keyLines: lines.key,
 	allLines: lines.all,
@@ -42,7 +52,7 @@ const Shotter = {
 			<film-state
 				:epoch="epoch"
 			></film-state>
-			<player-state></player-state>
+			<player-state :players="currentPlayers"></player-state>
 			<div v-for = "line in recentLines">
 				<recent-line
 					:characters="$options.characters"
@@ -64,7 +74,12 @@ ShotterApp.component('film-state',{
 
 ShotterApp.component('player-state',{
 	data: ()=>({}),
-	template: `<div>Players be playing</div>`
+	props: ["players"],
+	template: `<div>
+		<div v-for = "player in players">
+			{{player}}
+		</div>
+	</div>`
 })
 
 
