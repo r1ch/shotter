@@ -25,12 +25,12 @@ const Shotter = {
 
 const ShotterApp = Vue.createApp(Shotter)
 
-Shotter.component('film-state',{
+ShotterApp.component('film-state',{
 	data: ()=>({}),
 	template: `<div>It's a film</div>`
 })
 
-Shotter.component('player-state',{
+ShotterApp.component('player-state',{
 	data: ()=>({}),
 	template: `<div>Players be playing</div>`
 })
