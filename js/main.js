@@ -7,7 +7,7 @@ const Shotter = {
 	},
 	methods: {
 		connectSocket(){
-			this.socket = new WebSocket("ws://18.133.229.150:8080")
+			this.socket = new WebSocket("wss://sockets.bradi.sh:8080")
 			this.socket.addEventListener("message",this.eventHandler)
 		},
 		eventHandler(event){
