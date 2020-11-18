@@ -1,6 +1,6 @@
 const Shotter = {
 	data: ()=>({
-		epoch: 0 + 17*60 + 51
+		epoch: (0 + 17*60 + 51)*1000
 	}),
 	computed: {
 		recentLines: function(){
