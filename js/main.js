@@ -49,23 +49,23 @@ ShotterApp.component('imbibe', {
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
-		  <span v-for = "(count, character) in line.tokens" :key="`${character}`" href="#" class="card-link">
+		  <span v-for = "(count, character) in line.tokens" :key="character" href="#" class="card-link">
 		    {{ playerFromCharacter(character) }}
 		  </span>
 		</h6>
 		<p class="card-text" >
-		  <span v-for = "(text,index) in line.speech" :key="`${index}`">
+		  <span v-for = "(text,index) in line.speech" :key="index">
 		    {{ text }}
 		  </span>
 		</p>
 		<div class="card-text" v-if="line.tokens.Voldemort">
 		  <h6>Switch</h6>
-		  <span v-for = "player in players" :key="`${player}`">
+		  <span v-for = "player in players" :key="player">
 		    {{player}} : {{characterFromPlayer(player)}}<br>
 		  </span>
 		</div>
 		<div class="card-text" v-if="!line.tokens.Voldemort">
-		  <small v-for = "player in players" :key="`${player}`">
+		  <small v-for = "player in players" :key="player">
 		  {{player}}:{{characterFromPlayer(player)}}
 		  </small>
 		</div>
