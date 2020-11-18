@@ -8,8 +8,8 @@ const Shotter = {
 		} 
 
 	},
-	keyLines: keyLines,
-	allLines: allLines,
+	keyLines: lines.key,
+	allLines: lines.all,
 	players : ["Alex", "Clare", "Nick", "Megan", "Rich", "Soph"],
 	characters: ["Harry", "Ron", "Hermione"]
 }
