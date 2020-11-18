@@ -7,7 +7,7 @@ const Shotter = {
 	},
 	methods: {
 		connectSocket(){
-			this.socket = new WebSocket("wss://3.8.139.22")
+			this.socket = new WebSocket("ws://3.8.139.22:8080")
 			this.socket.addEventListener("message",event=>console.log(event))
 		},
 	},
