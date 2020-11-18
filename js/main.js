@@ -1,6 +1,6 @@
 const Shotter = {
 	data: ()=>({
-		
+		epoch: 0 + 17*60 + 51
 	}),
 	computed: {
 		recentLines: function(){
@@ -18,8 +18,8 @@ const Shotter = {
 		<div>
 			<film-state></film-state>
 			<player-state></player-state>
-			<div v-for = "line in recentLines" :key="line.lineNumber">
-				<recent-line></recent-line>
+			<div v-for = "line in recentLines">
+				{{line}}
 			</div>
 		</div>
 	`
