@@ -1,4 +1,22 @@
-Vue.component('imbibe', {
+const Shotter = {
+	data: ()=>({}),
+	computed: {
+		recentLines: function(){
+			let oldest = keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
+			console.log(oldest)
+			return keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
+		} 
+
+	},
+	keyLines: keyLines,
+	allLines: allLines,
+	players : ["Alex", "Clare", "Nick", "Megan", "Rich", "Soph"],
+	characters: ["Harry", "Ron", "Hermione"]
+}
+
+const ShotterApp = Vue.createApp(Shotter)
+
+ShotterApp.component('imbibe', {
   data: () => ({}),
   methods: {
     playerFromCharacter: function(character) {
@@ -50,4 +68,4 @@ Vue.component('imbibe', {
 	`
 })
 
-Vue.createApp(Shotter).mount('#shotter')
+ShotterApp.mount('#shotter')
