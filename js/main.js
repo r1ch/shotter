@@ -58,6 +58,7 @@ const ShotterApp = Vue.createApp(Shotter)
 
 ShotterApp.component('film-state',{
 	data: ()=>({}),
+	props: ["epoch"],
 	template: `<div>{{epoch}}</div>`
 })
 
