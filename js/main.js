@@ -39,7 +39,7 @@ const Shotter = {
 			return this.$options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
 		},
 		currentPlayers: function(){
-			return this.$options.players.map(player=>({character:characterForPlayer(player),player:player}));
+			return this.$options.players.map(player=>({character:this.characterForPlayer(player),player:player}));
 		}
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
 	},
