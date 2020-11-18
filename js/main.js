@@ -18,7 +18,7 @@ const Shotter = {
 		<div>
 			<film-state></film-state>
 			<player-state></player-state>
-			<recent-lines v:for="line in recentLines" :key = "line.lineNumber"></recent-lines>
+			<recent-lines v:for="line in recentLines" :key = "line.lineNumber" :recentLines="recentLines"></recent-lines>
 		</div>
 	`
 }
