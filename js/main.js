@@ -19,7 +19,11 @@ const Shotter = {
 			<film-state></film-state>
 			<player-state></player-state>
 			<div v-for = "line in recentLines">
-				{{line}}
+				<recent-line
+					:characters="characters"
+					:players="players"
+					:line="line"
+				></recent-line>
 			</div>
 		</div>
 	`
@@ -38,7 +42,7 @@ ShotterApp.component('player-state',{
 })
 
 
-ShotterApp.component('recent-lines', {
+ShotterApp.component('recent-line', {
 	data: () => ({}),
 	methods: {
 		playerFromCharacter: function(character) {
