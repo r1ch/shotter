@@ -34,7 +34,7 @@ const Shotter = {
 			return this.currentLine.voldeCount || 0;
 		},
 		currentLine : function(){
-			let line = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
+			let line = this.$options.keyLines.find(line=>line.timeEpoch.from>=this.epoch)
 			return line || {};
 		},
 		paddedCharacters: function(){
