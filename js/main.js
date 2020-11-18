@@ -26,9 +26,9 @@ const Shotter = {
 	},
 	computed: {
 		recentLines: function(){
-			let oldest = this.$options.allLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
+			let oldest = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
 			console.log(oldest)
-			return this.$options.allLines.slice(Math.max(0,oldest-5),oldest).reverse()
+			return this.$options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
 		} 
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
 		//Need player->Character and Character->player here
