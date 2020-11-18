@@ -39,7 +39,9 @@ const Shotter = {
 	characters: ["Harry", "Ron", "Hermione"],
 	template: `
 		<div>
-			<film-state></film-state>
+			<film-state
+				:epoch="epoch"
+			></film-state>
 			<player-state></player-state>
 			<div v-for = "line in recentLines">
 				<recent-line
@@ -56,7 +58,7 @@ const ShotterApp = Vue.createApp(Shotter)
 
 ShotterApp.component('film-state',{
 	data: ()=>({}),
-	template: `<div>It's a film</div>`
+	template: `<div>{{epoch}}</div>`
 })
 
 ShotterApp.component('player-state',{
