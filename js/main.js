@@ -2,13 +2,23 @@ const Shotter = {
 	data: ()=>({
 		epoch: (0 + 17*60 + 51)*1000
 	}),
+	created: function(){
+		this.connectSocket()
+	},
+	methods: {
+		connectSocket(){
+			this.socket = new WebSocket("wss://3.8.139.22:8080")
+			this.socket.addEventListener("message",event=>console.log(event))
+		},
+	},
 	computed: {
 		recentLines: function(){
 			let oldest = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
 			console.log(oldest)
 			return this.$options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
 		} 
-
+		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
+		//Need player->Character and Character->player here
 	},
 	keyLines: lines.key,
 	allLines: lines.all,
