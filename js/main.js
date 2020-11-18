@@ -2,9 +2,9 @@ const Shotter = {
 	data: ()=>({}),
 	computed: {
 		recentLines: function(){
-			let oldest = keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
+			let oldest = $options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
 			console.log(oldest)
-			return keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
+			return $options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
 		} 
 
 	},
