@@ -136,7 +136,7 @@ ShotterApp.component('recent-line', {
 		<div class="card-text" v-if="line.tokens.Voldemort">
 		  <h6><i class="fas fa-redo"></i> Switch</h6>
 		  <span v-for = "entry in line.playerMap" :key="entry.player">
-		    {{entry.player}} <small>drink for/small> {{entry.character}}<br>
+		    {{entry.player}} <small>drink for</small> {{entry.character}}<br>
 		  </span>
 		</div>
 	      </div>
