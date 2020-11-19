@@ -1,6 +1,12 @@
 const Shotter = {
 	data: ()=>({
-		epoch: 0
+		epoch: 0,
+		playersText: 
+		`
+		A
+		B
+		C
+		`
 	}),
 	created: function(){
 		this.connectSocket()
@@ -33,6 +39,9 @@ const Shotter = {
 		}
 	},
 	computed: {
+		players : function(){
+			return this.playersText.split(/\r?\n/)
+		},
 		currentLine : function(){
 			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from >= this.epoch)-1;
 			if (lineIndex !== -1) return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
@@ -75,6 +84,8 @@ const Shotter = {
 							:entry="entry"
 						></map-entry>
 					</ul>
+					<textarea v-model="playersText"></textarea>
+					*{{players}}*
 				</div>
 				<div class = "col-9">
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
