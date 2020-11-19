@@ -35,7 +35,7 @@ const Shotter = {
 	computed: {
 		currentLine : function(){
 			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from <= this.epoch)
-			if (line) return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
+			if (lineIndex !== -1) return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
 			return {voldeCount:0, lineIndex:false}
 		},
 		paddedCharacters: function(){
