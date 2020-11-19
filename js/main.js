@@ -41,7 +41,7 @@ const Shotter = {
 			return this.$options.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
 		},
 		recentLines: function(){
-			let mostRecentIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
+			let mostRecentIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from<=this.epoch)
 			let lastFive =  this.$options.keyLines.slice(Math.max(0,mostRecentIndex-5),mostRecentIndex)
 			return lastFive.reverse()
 				.map(line=>({
