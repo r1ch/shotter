@@ -63,20 +63,17 @@ const Shotter = {
 				></film-state>
 			</div>
 			<div class = "row">
-				<ul class = "list-group" >
+				<ul class = "list-group col-3" >
 					<map-entry v-for = "entry in currentMap" :key = "entry.player"
 						:entry="entry"
 					></map-entry>
 				</ul>
-			</div>
-			<div class = "row"
-				<div v-for = "line in recentLines" :key = "line.lineNumber">
-					<recent-line
-						class = "col-12"
+				<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
+						class = "offset-3 col-9"
 						:characters="$options.characters"
 						:players="$options.players"
 						:line="line"
-					></recent-line>
+				></recent-line>
 				</div>
 			</div>
 		</div>
