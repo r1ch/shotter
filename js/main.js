@@ -27,6 +27,9 @@ const Shotter = {
 			let playerIndex = this.$options.players.indexOf(player)
 			let characterIndex =  (playerIndex - line.voldeCount + this.paddedCharacters.length) % this.paddedCharacters.length
 			return this.paddedCharacters[characterIndex]	
+		},
+		playerMap(line = this.currentLine){
+			return this.$options.players.map(player=>({character:this.characterForPlayer(player,line),player:player}));
 		}
 	},
 	computed: {
@@ -51,9 +54,10 @@ const Shotter = {
 				}))
 			
 		},
-		playerMap: function(line=this.currentLine){
-			return this.$options.players.map(player=>({character:this.characterForPlayer(player,line),player:player}));
+		currentPlayerMap: function(){
+			return this.playerMap
 		}
+		
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
 	},
 	keyLines: lines.key,
@@ -70,7 +74,7 @@ const Shotter = {
 			</div>
 			<div class = "row">
 				<ul class = "list-group col-3" >
-					<map-entry v-for = "entry in playerMap" :key = "entry.player"
+					<map-entry v-for = "entry in currentPlayerMap" :key = "entry.player"
 						:entry="entry"
 					></map-entry>
 				</ul>
