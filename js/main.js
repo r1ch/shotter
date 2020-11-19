@@ -43,7 +43,7 @@ const Shotter = {
 			return {voldeCount:0, lineIndex:lineIndex}
 		},
 		paddedCharacters: function(){
-			return this.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
+			return this.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Students");
 		},
 		recentLines: function(){
 			if(this.currentLine.lineIndex==-1) return []
