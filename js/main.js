@@ -63,8 +63,8 @@ const Shotter = {
 				></film-state>
 			</div>
 			<div class = "row">
-				<ul class = "list-group" v-for = "entry in currentMap" :key = "entry.player">
-					<map-entry 
+				<ul class = "list-group" >
+					<map-entry v-for = "entry in currentMap" :key = "entry.player"
 						:entry="entry"
 					></map-entry>
 				</ul>
