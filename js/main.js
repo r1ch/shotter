@@ -52,7 +52,7 @@ const Shotter = {
 			
 		},
 		currentPlayerMap: function(){
-			return this.playerMap
+			return this.playerMap()
 		}
 		
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
@@ -125,7 +125,7 @@ ShotterApp.component('recent-line', {
     		}
   	},
 	template: `
-	    <div class="card" style="width: 25rem;">
+	    <div class="card">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
