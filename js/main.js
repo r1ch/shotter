@@ -34,15 +34,16 @@ const Shotter = {
 	},
 	computed: {
 		currentLine : function(){
-			let line = this.$options.keyLines.find(line=>line.timeEpoch.from>=this.epoch)
-			return line || {voldeCount:0};
+			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from <= this.epoch)
+			if (line) return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
+			return {voldeCount:0, lineIndex:false}
 		},
 		paddedCharacters: function(){
 			return this.$options.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
 		},
 		recentLines: function(){
-			let mostRecentIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from <= this.epoch)
-			let lastFive =  this.$options.keyLines.slice(Math.max(0,mostRecentIndex-5),mostRecentIndex)
+			if(!this.currentLine.lineIndex) return []
+			let lastFive = this.$options.keyLines.slice(Math.max(0,this.currentLine.lineIndex-5),this.currentLine.lineIndex)
 			return lastFive.reverse()
 				.map(line=>({
 					...line,
