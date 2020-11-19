@@ -43,7 +43,7 @@ const Shotter = {
 		},
 		recentLines: function(){
 			if(this.currentLine.lineIndex==-1) return []
-			let lastFive = this.$options.keyLines.slice(Math.max(0,this.currentLine.lineIndex-5),this.currentLine.lineIndex)
+			let lastFive = this.$options.keyLines.slice(Math.max(0,this.currentLine.lineIndex-5),this.currentLine.lineIndex+1)
 			return lastFive.reverse()
 				.map(line=>({
 					...line,
