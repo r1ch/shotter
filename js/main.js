@@ -106,7 +106,7 @@ ShotterApp.component('recent-line', {
 	methods: {
 		playerFromCharacter: function(character) {
 			let characterIndex = this.characters.indexOf(character)
-			if(characterIndex == -1) {return}
+			if(characterIndex == -1) { return }
 			else return this.players[(characterIndex + this.line.voldeCount)%this.players.length]
 		},
 		characterFromPlayer: function(player){
