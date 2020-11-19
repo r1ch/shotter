@@ -78,8 +78,10 @@ const Shotter = {
 							:entry="entry"
 						></map-entry>
 					</ul>
+					<br>
+					<h5>Player entry</h5>
+					<br>	
 					<textarea v-model="playersText"></textarea>
-					*{{players}}*
 				</div>
 				<div class = "col-9">
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
