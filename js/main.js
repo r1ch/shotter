@@ -104,7 +104,7 @@ ShotterApp.component('film-state',{
 			return `${hours}h ${minutes}m ${seconds}s`
 		}
 	},
-	template: `<h2>{{timeString}}</div>`
+	template: `<h2>{{timeString}}</h2>`
 })
 
 ShotterApp.component('map-entry',{
