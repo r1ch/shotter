@@ -58,7 +58,7 @@ const Shotter = {
 	},
 	keyLines: lines.key,
 	allLines: lines.all,
-	players : ["Colemen", "Bradii", "Forins", "Marrison"],
+	players : ["Colemen", "Bradii", "Forins", "Marrison", "Bob", "Alice", "Eve"],
 	characters: ["Harry", "Ron", "Hermione"],
 	template: `
 		<div class = "container">
