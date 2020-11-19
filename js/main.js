@@ -7,7 +7,7 @@ const Shotter = {
 		if(window.location.search){
 			let playersParam = decodeURIComponent(window.location.search).match(/players=([^,]+,?)+/)
 			if(playersParam){
-				let [param, value] = playersParam.split("=")
+				let [param, value] = playersParam[0].split("=")
 				playersText = value.split(",").join("\n")
 			}
 										       
