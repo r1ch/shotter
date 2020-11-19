@@ -94,7 +94,6 @@ ShotterApp.component('film-state',{
 ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry"],
-	iconMap: {"Harry":"bolt", "Hermione"}
 	template: `
 		<li class="list-group-item">{{entry.player}}</li>
 		`
