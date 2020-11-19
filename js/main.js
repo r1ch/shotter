@@ -78,9 +78,8 @@ const Shotter = {
 							:entry="entry"
 						></map-entry>
 					</ul>
-					<br>
+					<hr/>
 					<h6>Player entry</h6>
-					<br>	
 					<textarea v-model="playersText"></textarea>
 				</div>
 				<div class = "col-9">
