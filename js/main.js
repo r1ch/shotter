@@ -121,6 +121,7 @@ ShotterApp.component('recent-line', {
 		characterTokens(){
 			let tokens = Object.assign({},this.line.tokens)
 			delete tokens.Voldemort
+			return tokens
 		}
   	},
 	template: `
