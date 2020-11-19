@@ -4,7 +4,7 @@ const Shotter = {
 		playersText: ["Player 1", "Player 2"].join("\n")
 	}),
 	created: function(){
-		if(window.location.search && ){
+		if(window.location.search){
 			let playersParam = decodeURIComponent(window.location.search).match(/players=([^,]+,?)+/)
 			if(playersParam){
 				let [param, value] = playerParam.split("=")
