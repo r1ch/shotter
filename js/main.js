@@ -26,7 +26,7 @@ const Shotter = {
 		},
 		characterForPlayer(player,line = this.currentLine){
 			let playerIndex = this.players.indexOf(player)
-			let characterIndex =  (playerIndex - line.voldeCount + this.paddedCharacters.length) % this.paddedCharacters.length
+			let characterIndex =  (((playerIndex - line.voldeCount) % this.paddedCharacters.length) + this.paddedCharacters.length) % this.paddedCharacters.lengt
 			return this.paddedCharacters[characterIndex]	
 		},
 		playerMap(line = this.currentLine){
