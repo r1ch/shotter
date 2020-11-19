@@ -55,17 +55,25 @@ const Shotter = {
 	players : ["Colemen", "Bradii", "Forins", "Marrison"],
 	characters: ["Harry", "Ron", "Hermione"],
 	template: `
-		<div>
-			<film-state
-				:epoch="epoch"
-			></film-state>
-			<player-state :players="currentPlayers"></player-state>
-			<div v-for = "line in recentLines">
-				<recent-line
-					:characters="$options.characters"
-					:players="$options.players"
-					:line="line"
-				></recent-line>
+		<div class = "container">
+			<div class = "row"
+				<film-state 
+					class = "col-12"
+					:epoch="epoch"
+				></film-state>
+			</div>
+			<div class = "row">
+				<player-state 
+					:players="currentPlayers"
+					class = "col-3"
+				></player-state>
+				<div class = "col-9" v-for = "line in recentLines" :key = "line.lineNumber">
+					<recent-line
+						:characters="$options.characters"
+						:players="$options.players"
+						:line="line"
+					></recentline>
+				</div>
 			</div>
 		</div>
 	`
@@ -83,8 +91,8 @@ ShotterApp.component('player-state',{
 	data: ()=>({}),
 	props: ["players"],
 	template: `<div>
-		<div v-for = "player in players">
-			{{player}}
+		<div v-for = "players in players">
+			
 		</div>
 	</div>`
 })
