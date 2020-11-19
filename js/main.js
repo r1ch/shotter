@@ -45,7 +45,7 @@ const Shotter = {
 			console.log(oldest)
 			return this.$options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
 		},
-		currentPlayers: function(){
+		currentMap: function(){
 			return this.$options.players.map(player=>({character:this.characterForPlayer(player),player:player}));
 		}
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
@@ -63,11 +63,12 @@ const Shotter = {
 				></film-state>
 			</div>
 			<div class = "row">
-				<player-state 
-					:players="currentPlayers"
-					class = "col-3"
-				></player-state>
-				<div class = "col-9" v-for = "line in recentLines" :key = "line.lineNumber">
+				<ul class = "col-3 list-group" v-for = "entry in currentMap" :key = "entry.player">
+					<map-entry 
+						:entry="entry"
+					></map-entry>
+				</ul>
+				<div class = "offset-3 col-9" v-for = "line in recentLines" :key = "line.lineNumber">
 					<recent-line
 						:characters="$options.characters"
 						:players="$options.players"
@@ -87,14 +88,12 @@ ShotterApp.component('film-state',{
 	template: `<div>{{epoch}}</div>`
 })
 
-ShotterApp.component('player-state',{
+ShotterApp.component('map-entry',{
 	data: ()=>({}),
-	props: ["players"],
-	template: `<div>
-		<div v-for = "players in players">
-			
-		</div>
-	</div>`
+	props: ["entry"],
+	template: `
+		<li class="list-group-item">{{entry.player}}:{{entry.character}}</li>
+		`
 })
 
 
