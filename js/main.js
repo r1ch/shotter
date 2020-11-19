@@ -56,7 +56,7 @@ const Shotter = {
 	characters: ["Harry", "Ron", "Hermione"],
 	template: `
 		<div class = "container">
-			<div class = "row"
+			<div class = "row">
 				<film-state 
 					class = "col-12"
 					:epoch="epoch"
