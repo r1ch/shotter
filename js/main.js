@@ -39,9 +39,16 @@ const Shotter = {
 			return this.playersText.split(/\r?\n/)
 		},
 		currentLine : function(){
-			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from >= this.epoch)-1;
-			if (lineIndex !== -1) return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
-			return {voldeCount:0, lineIndex:lineIndex}
+			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from >= this.epoch)
+			//This finds the next line, so really we need to find the previous one, and account
+			//For end effects
+			if (lineIndex != 0) {
+				//0 is the first line
+				if(lineIndex==-1) lineIndex = this.$options.keyLines.length //if finished
+				lineIndex--;
+				return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
+			}
+			return {voldeCount:0, lineIndex:-1} //not yet started,
 		},
 		paddedCharacters: function(){
 			return this.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Students");
