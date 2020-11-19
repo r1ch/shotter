@@ -105,7 +105,7 @@ ShotterApp.component('recent-line', {
 	props: ["line"],
 	methods: {
 		playerForCharacter(character){
-			let entry = line.playerMap.find(entry=>entry.character==character)
+			let entry = this.line.playerMap.find(entry=>entry.character==character)
 			if(!entry) return
 			return entry.player
 		}
