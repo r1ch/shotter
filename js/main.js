@@ -70,7 +70,7 @@ const Shotter = {
 			</div>
 			<div class = "row">
 				<div class = "col-3">
-					<ul class = "list-group col-3" >
+					<ul class = "list-group" >
 						<map-entry v-for = "entry in currentPlayerMap" :key = "entry.player"
 							:entry="entry"
 						></map-entry>
