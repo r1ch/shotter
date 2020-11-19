@@ -130,7 +130,7 @@ ShotterApp.component('recent-line', {
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
 		  <span v-for = "(count, character) in line.tokens" :key="character" href="#" class="card-link">
-		    {{ playerFromCharacter(character) }}
+		    {{ line.playerMap.find(entry=>entry.character=character).player }}
 		  </span>
 		</h6>
 		<p class="card-text" >
@@ -140,14 +140,9 @@ ShotterApp.component('recent-line', {
 		</p>
 		<div class="card-text" v-if="line.tokens.Voldemort">
 		  <h6>Switch</h6>
-		  <span v-for = "player in players" :key="player">
-		    {{player}} : {{characterFromPlayer(player)}}<br>
+		  <span v-for = "entry in line.playerMap" :key="entry.player">
+		    {{entry.player}} -> {{entry.character)}}<br>
 		  </span>
-		</div>
-		<div class="card-text" v-if="!line.tokens.Voldemort">
-		  <small v-for = "player in players" :key="player">
-		  {{player}}:{{characterFromPlayer(player)}}
-		  </small>
 		</div>
 	      </div>
 	    </div>
