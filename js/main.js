@@ -72,7 +72,7 @@ const Shotter = {
 						:characters="$options.characters"
 						:players="$options.players"
 						:line="line"
-					></recentline>
+					></recent-line>
 				</div>
 			</div>
 		</div>
