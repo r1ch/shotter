@@ -1,12 +1,7 @@
 const Shotter = {
 	data: ()=>({
 		epoch: 0,
-		playersText: 
-		`
-		A
-		B
-		C
-		`
+		playersText: ["Player 1", "Player 2"].join("\n")
 	}),
 	created: function(){
 		this.connectSocket()
@@ -30,12 +25,12 @@ const Shotter = {
 			}
 		},
 		characterForPlayer(player,line = this.currentLine){
-			let playerIndex = this.$options.players.indexOf(player)
+			let playerIndex = this.players.indexOf(player)
 			let characterIndex =  (playerIndex - line.voldeCount + this.paddedCharacters.length) % this.paddedCharacters.length
 			return this.paddedCharacters[characterIndex]	
 		},
 		playerMap(line = this.currentLine){
-			return this.$options.players.map(player=>({character:this.characterForPlayer(player,line),player:player}));
+			return this.players.map(player=>({character:this.characterForPlayer(player,line),player:player}));
 		}
 	},
 	computed: {
@@ -48,7 +43,7 @@ const Shotter = {
 			return {voldeCount:0, lineIndex:lineIndex}
 		},
 		paddedCharacters: function(){
-			return this.$options.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
+			return this.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
 		},
 		recentLines: function(){
 			if(this.currentLine.lineIndex==-1) return []
@@ -67,7 +62,6 @@ const Shotter = {
 	},
 	keyLines: lines.key,
 	allLines: lines.all,
-	players : ["Colemen", "Bradii", "Forins", "Marrison", "Bob", "Alice", "Eve"],
 	characters: ["Harry", "Ron", "Hermione"],
 	template: `
 		<div class = "container">
