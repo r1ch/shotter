@@ -79,7 +79,7 @@ const Shotter = {
 						></map-entry>
 					</ul>
 					<br>
-					<h5>Player entry</h5>
+					<h6>Player entry</h6>
 					<br>	
 					<textarea v-model="playersText"></textarea>
 				</div>
