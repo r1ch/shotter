@@ -124,8 +124,9 @@ ShotterApp.component('recent-line', {
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
+		  <i class="fas fa-glass-cheers"></i>
 		  <span v-for = "(count, character) in line.tokens" :key="character" href="#" class="card-link">
-			{{playerForCharacter(character)}}
+			{{playerForCharacter(character)}} 
 		  </span>
 		</h6>
 		<p class="card-text" >
