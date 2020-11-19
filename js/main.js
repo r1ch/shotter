@@ -48,8 +48,7 @@ const Shotter = {
 				.map(line=>({
 					...line,
 					playerMap:this.playerMap(line)
-				}))
-			
+				}))	
 		},
 		currentPlayerMap: function(){
 			return this.playerMap()
@@ -104,6 +103,13 @@ ShotterApp.component('map-entry',{
 ShotterApp.component('recent-line', {
 	data: () => ({}),
 	props: ["line"],
+	methods: {
+		playerForCharacter(character){
+			let entry = line.playerMap.find(entry=>entry.character==character)
+			if(!entry) return
+			return entry.player
+		}
+	},
   	computed: {
     		title(){
       			let characters = Object.keys(this.line.tokens)
@@ -116,7 +122,7 @@ ShotterApp.component('recent-line', {
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
 		  <span v-for = "(count, character) in line.tokens" :key="character" href="#" class="card-link">
-		    {{ line.playerMap.find(entry=>entry.character==character).player }}
+			{{playerForCharacter(character)}}
 		  </span>
 		</h6>
 		<p class="card-text" >
