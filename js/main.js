@@ -63,13 +63,17 @@ const Shotter = {
 				></film-state>
 			</div>
 			<div class = "row">
-				<ul class = "col-3 list-group" v-for = "entry in currentMap" :key = "entry.player">
+				<ul class = "list-group" v-for = "entry in currentMap" :key = "entry.player">
 					<map-entry 
+						class = "col-3"
 						:entry="entry"
 					></map-entry>
 				</ul>
-				<div class = "offset-3 col-9" v-for = "line in recentLines" :key = "line.lineNumber">
+			</div>
+			<div class = "row"
+				<div v-for = "line in recentLines" :key = "line.lineNumber">
 					<recent-line
+						class = "col-12"
 						:characters="$options.characters"
 						:players="$options.players"
 						:line="line"
@@ -92,7 +96,7 @@ ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry"],
 	template: `
-		<li class="list-group-item">{{entry.player}}:{{entry.character}}</li>
+		<li class="list-group-item">{{entry.character}} : {{entry.player}}</li>
 		`
 })
 
