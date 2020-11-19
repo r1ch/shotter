@@ -82,7 +82,6 @@ const Shotter = {
 						class = "offset-3 col-9" 
 						:line="line"
 				></recent-line>
-				</div>
 			</div>
 		</div>
 	`
@@ -145,7 +144,7 @@ ShotterApp.component('recent-line', {
 		<div class="card-text" v-if="line.tokens.Voldemort">
 		  <h6>Switch</h6>
 		  <span v-for = "entry in line.playerMap" :key="entry.player">
-		    {{entry.player}} -> {{entry.character)}}<br>
+		    {{entry.player}} -> {{entry.character}}<br>
 		  </span>
 		</div>
 	      </div>
