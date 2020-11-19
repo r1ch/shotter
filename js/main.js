@@ -156,9 +156,7 @@ ShotterApp.component('recent-line', {
 		  </span>
 		</h6>
 		<p class="card-text" >
-		  <span v-for = "(text,index) in line.speech" :key="index">
-		    {{ text }}
-		  </span>
+		    {{ lines.speech.join("\n") }}
 		</p>
 		<div class="card-text" v-if="line.tokens.Voldemort">
 		  <h6><i class="fas fa-redo"></i> Switch</h6>
