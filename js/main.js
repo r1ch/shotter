@@ -98,7 +98,11 @@ ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry"],
 	template: `
-		<li class="list-group-item">{{entry.player}} -> {{entry.character}}</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
+			{{entry.player}}<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">{{entry.character}}</span>
+			
+		</li>
 		`
 })
 
