@@ -33,12 +33,9 @@ const Shotter = {
 		}
 	},
 	computed: {
-		currentVoldeCount: function(){
-			return this.currentLine.voldeCount || 0;
-		},
 		currentLine : function(){
 			let line = this.$options.keyLines.find(line=>line.timeEpoch.from>=this.epoch)
-			return line || {};
+			return line || {voldeCount:0};
 		},
 		paddedCharacters: function(){
 			return this.$options.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
