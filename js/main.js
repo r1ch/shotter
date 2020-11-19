@@ -125,7 +125,7 @@ ShotterApp.component('recent-line', {
 		}
   	},
 	template: `
-	    <div class="card" :class="{success:line.tokens.Voldemort}">
+	    <div class="card" :class="{'text-white':line.tokens.Voldemort, 'bg-dark':line.tokens.Voldemort}">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
