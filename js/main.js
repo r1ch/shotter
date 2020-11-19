@@ -120,13 +120,12 @@ ShotterApp.component('recent-line', {
     		}
   	},
 	template: `
-	    <div class="card">
+	    <div class="card" :class="{success:line.Voldemort}">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
-		  <i class="fas fa-glass-cheers"></i>
 		  <span v-for = "(count, character) in line.tokens" :key="character" href="#" class="card-link">
-			{{playerForCharacter(character)}} 
+			<i class="fas fa-glass-cheers"></i> {{playerForCharacter(character)}} 
 		  </span>
 		</h6>
 		<p class="card-text" >
@@ -135,9 +134,9 @@ ShotterApp.component('recent-line', {
 		  </span>
 		</p>
 		<div class="card-text" v-if="line.tokens.Voldemort">
-		  <h6>Switch</h6>
+		  <h6><i class="fas fa-redo"></i> Switch</h6>
 		  <span v-for = "entry in line.playerMap" :key="entry.player">
-		    {{entry.player}} -> {{entry.character}}<br>
+		    {{entry.player}} <small>is now</small> {{entry.character}}<br>
 		  </span>
 		</div>
 	      </div>
