@@ -95,28 +95,14 @@ ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry"],
 	template: `
-		<li class="list-group-item">{{entry.player}}</li>
+		<li class="list-group-item">{{entry.player}} -> {{entry.character}}</li>
 		`
 })
 
 
 ShotterApp.component('recent-line', {
 	data: () => ({}),
-	props: ["line","characters","players"],
-	methods: {
-		playerFromCharacter: function(character) {
-			let characterIndex = this.characters.indexOf(character)
-			if(characterIndex == -1) { return }
-			else return this.players[(characterIndex + this.line.voldeCount)%this.players.length]
-		},
-		characterFromPlayer: function(player){
-			let playerIndex = this.players.indexOf(player)
-			let inclusive = [...this.characters]
-			while(inclusive.length<this.players.length) inclusive.push("Hogwarts' Students")
-				let characterIndex =  (playerIndex - this.line.voldeCount + inclusive.length) % inclusive.length
-			return inclusive[characterIndex]
-		}
-  	},
+	props: ["line"],
   	computed: {
     		title(){
       			let characters = Object.keys(this.line.tokens)
@@ -129,7 +115,7 @@ ShotterApp.component('recent-line', {
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
 		  <span v-for = "(count, character) in line.tokens" :key="character" href="#" class="card-link">
-		    {{ line.playerMap.find(entry=>entry.character=character).player }}
+		    {{ line.playerMap.find(entry=>entry.character==character).player }}
 		  </span>
 		</h6>
 		<p class="card-text" >
