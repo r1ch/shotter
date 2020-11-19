@@ -91,7 +91,15 @@ const ShotterApp = Vue.createApp(Shotter)
 ShotterApp.component('film-state',{
 	data: ()=>({}),
 	props: ["epoch"],
-	template: `<div>{{epoch}}</div>`
+	computed : {
+		timeString(){
+			let seconds = Math.floor((epoch / 1000) % 60);
+			let minutes = Math.floor((epoch / 1000 / 60 ) % 60);
+			let hours = Math.floor(epoch / 1000 / 60 / 60);
+			return `${hours}h ${minutes}m ${seconds}s`
+		}
+	},
+	template: `<h2>{{timeString}}</div>`
 })
 
 ShotterApp.component('map-entry',{
