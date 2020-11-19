@@ -65,7 +65,6 @@ const Shotter = {
 			<div class = "row">
 				<ul class = "list-group" v-for = "entry in currentMap" :key = "entry.player">
 					<map-entry 
-						class = "col-3"
 						:entry="entry"
 					></map-entry>
 				</ul>
