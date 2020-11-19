@@ -4,6 +4,9 @@ const Shotter = {
 		playersText: ["Player 1", "Player 2"].join("\n")
 	}),
 	created: function(){
+		if(this.$route.query.players){
+			this.playersText = this.$route.query.players.split(",").join("\n")
+		}
 		this.connectSocket()
 	},
 	methods: {
