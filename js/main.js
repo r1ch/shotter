@@ -4,8 +4,13 @@ const Shotter = {
 		playersText: ["Player 1", "Player 2"].join("\n")
 	}),
 	created: function(){
-		if(this.$route.query.players){
-			this.playersText = this.$route.query.players.split(",").join("\n")
+		if(window.location.search && ){
+			let playersParam = decodeURIComponent(window.location.search).match(/players=([^,]+,?)+/)
+			if(playersParam){
+				let [param, value] = playerParam.split("=")
+				playersText = value.split(",").join("\n")
+			}
+										       
 		}
 		this.connectSocket()
 	},
