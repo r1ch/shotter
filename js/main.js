@@ -23,9 +23,9 @@ const Shotter = {
 				}
 			}
 		},
-		characterForPlayer(player){		
+		characterForPlayer(player,line = this.currentLine){
 			let playerIndex = this.$options.players.indexOf(player)
-			let characterIndex =  (playerIndex - this.currentVoldeCount + this.paddedCharacters.length) % this.paddedCharacters.length
+			let characterIndex =  (playerIndex - line.voldeCount + this.paddedCharacters.length) % this.paddedCharacters.length
 			return this.paddedCharacters[characterIndex]	
 		}
 	},
@@ -42,11 +42,17 @@ const Shotter = {
 		},
 		recentLines: function(){
 			let oldest = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
-			console.log(oldest)
-			return this.$options.keyLines.slice(Math.max(0,oldest-5),oldest).reverse()
+			return this.$options.keyLines
+				.slice(Math.max(0,oldest-5),oldest)
+				.reverse()
+				.map(line=>({
+					...line,
+					playerMap:this.playerMap(line)
+				}))
+			
 		},
-		currentMap: function(){
-			return this.$options.players.map(player=>({character:this.characterForPlayer(player),player:player}));
+		playerMap: function(line=this.currentLine){
+			return this.$options.players.map(player=>({character:this.characterForPlayer(player,line),player:player}));
 		}
 		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
 	},
@@ -64,14 +70,12 @@ const Shotter = {
 			</div>
 			<div class = "row">
 				<ul class = "list-group col-3" >
-					<map-entry v-for = "entry in currentMap" :key = "entry.player"
+					<map-entry v-for = "entry in playerMap" :key = "entry.player"
 						:entry="entry"
 					></map-entry>
 				</ul>
 				<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
-						class = "offset-3 col-9"
-						:characters="$options.characters"
-						:players="$options.players"
+						class = "offset-3 col-9" 
 						:line="line"
 				></recent-line>
 				</div>
