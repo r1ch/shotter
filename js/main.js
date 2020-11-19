@@ -34,7 +34,7 @@ const Shotter = {
 	},
 	computed: {
 		currentLine : function(){
-			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from <= this.epoch)
+			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from >= this.epoch)-1;
 			if (lineIndex !== -1) return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
 			return {voldeCount:0, lineIndex:lineIndex}
 		},
