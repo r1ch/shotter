@@ -73,6 +73,7 @@ const Shotter = {
 			</div>
 			<div class = "row">
 				<div class = "col-3">
+					<h6>Who's who?</h6>
 					<ul class = "list-group" >
 						<map-entry v-for = "entry in currentPlayerMap" :key = "entry.player"
 							:entry="entry"
@@ -83,6 +84,7 @@ const Shotter = {
 					<textarea v-model="playersText"></textarea>
 				</div>
 				<div class = "col-9">
+					<h6>Imbibe</h6>
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
 							:line="line"
 					></recent-line>
