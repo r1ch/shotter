@@ -41,10 +41,9 @@ const Shotter = {
 			return this.$options.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Student");
 		},
 		recentLines: function(){
-			let oldest = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
-			return this.$options.keyLines
-				.slice(Math.max(0,oldest-5),oldest)
-				.reverse()
+			let mostRecentIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from>=this.epoch)
+			let lastFive =  this.$options.keyLines.slice(Math.max(0,mostRecentIndex-5),mostRecentIndex)
+			return lastFive.reverse()
 				.map(line=>({
 					...line,
 					playerMap:this.playerMap(line)
@@ -95,8 +94,9 @@ ShotterApp.component('film-state',{
 ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry"],
+	iconMap: {"Harry":"bolt", "Hermione"}
 	template: `
-		<li class="list-group-item">{{entry.character}} : {{entry.player}}</li>
+		<li class="list-group-item">{{entry.player}}</li>
 		`
 })
 
