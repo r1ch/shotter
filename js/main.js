@@ -117,14 +117,18 @@ ShotterApp.component('recent-line', {
     		title(){
       			let characters = Object.keys(this.line.tokens)
       			return characters.length === 1 ? characters[0] : "Multiple"
-    		}
+    		},
+		characterTokens(){
+			let tokens = Object.assign({},this.line.tokens)
+			delete tokens.Voldemort
+		}
   	},
 	template: `
 	    <div class="card" :class="{success:line.tokens.Voldemort}">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
-		  <span v-for = "(count, character) in line.tokens.filter(token=>token!='Voldemort')" :key="character" href="#" class="card-link">
+		  <span v-for = "(count, character) in characterTokens" :key="character" href="#" class="card-link">
 			<i class="fas fa-glass-cheers"></i> {{playerForCharacter(character)}}
 		  </span>
 		</h6>
