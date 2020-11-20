@@ -1,12 +1,14 @@
 const Shotter = {
 	data: ()=>({
 		epoch: 0,
-		playersText: ["Player 1", "Player 2"].join("\n")
+		playersText: ["Player 1", "Player 2"].join("\n"),
+		characters: ["Harry","Ron","Hermione"]
 	}),
 	created: function(){
 		//unpack the query string
 		const queryOptionsTypes = {
 			players: {isList:true},
+			characters: {isList:true},
 			server: {isList:false},
 			room: {isList:false}
 		};
@@ -25,6 +27,7 @@ const Shotter = {
 		}
 		//overwrite defaults
 		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
+		if(queryOptions.characters) this.characters = queryOptions.characters;
 		this.connectSocket()
 	},
 	methods: {
@@ -81,7 +84,7 @@ const Shotter = {
 			return {switchCount:0, lineIndex:-1} //not yet started,
 		},
 		paddedCharacters: function(){
-			return this.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Students");
+			return this.players.map((player,index)=>this.characters[index]||"Hogwarts Students");
 		},
 		recentLines: function(){
 			if(this.currentLine.lineIndex==-1) return []
