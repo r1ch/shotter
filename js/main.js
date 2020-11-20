@@ -4,12 +4,27 @@ const Shotter = {
 		playersText: ["Player 1", "Player 2"].join("\n")
 	}),
 	created: function(){
-		if(this.$router){
-			console.log(this.$router.players)
-			console.log(this.$router.room)
-			console.log(this.$router.server)
-			console.log(this.$router.file)
+		//unpack the query string
+		const options = {
+			players: {isList:true},
+			server: {isList:false},
+			room: {isList:false}
 		}
+		if(window.location.search)
+			let queryOptions = {}
+			let queryString = decodeURIComponent(window.location.search).substring(1)
+			queryString
+			.split("&")
+			.forEach(pair=>{
+				let [param,value] = pair.split("=")
+				if(options[param]){
+					if(options[param].isList) queryOptions[param] = value.split(",")
+					else queryOptions[param] = value
+				}
+			})
+		//overwrite defaults
+		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
+		
 		this.connectSocket()
 	},
 	methods: {
