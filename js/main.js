@@ -109,7 +109,7 @@ const Shotter = {
 					<ul class = "list-group" >
 						<map-entry v-for = "(entry,index) in currentPlayerMap" :key = "entry.player"
 							:entry="entry"
-						></map-entry>-->
+						></map-entry>
 					</ul>
 					<hr/>
 					<h6>Player entry</h6>
