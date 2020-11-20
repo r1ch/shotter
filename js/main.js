@@ -183,4 +183,4 @@ ShotterApp.component('recent-line', {
 	`
 })
 
-ShotterApp.mount('#shotter')
+ShotterApp.use(VueRouter).mount('#shotter')
