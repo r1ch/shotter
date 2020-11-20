@@ -47,14 +47,23 @@ const Shotter = {
 			}
 		},
 		characterForPlayer(player,line = this.currentLine){
-			let playerIndex = this.players.indexOf(player)
 			console.log(`Found:${player} at ${playerIndex}`)
 			let len = this.paddedCharacters.length
 			let characterIndex = ((( playerIndex - line.switchCount ) % len) + len) % len
 			return this.paddedCharacters[characterIndex]	
 		},
 		playerMap(line = this.currentLine){
-			return this.players.map(player=>({character:this.characterForPlayer(player,line),player:player}));
+			return this.players.map(
+				(player,index)=>{
+					let entry = {
+						character:this.characterForPlayer(player,line),
+						player:player,
+						index:index
+					}
+					console.log(entry)
+					return entry
+				}
+			);
 		}
 	},
 	computed: {
@@ -104,7 +113,7 @@ const Shotter = {
 				<div class = "col-3">
 					<h6>Who's who?</h6>
 					<ul class = "list-group">
-						<map-entry v-for = "entry in currentPlayerMap" :entry="entry"></map-entry>
+						<map-entry v-for = "entry in currentPlayerMap" :entry="entry" :key="entry.index"></map-entry>
 					</ul>
 					<hr/>
 					<h6>Player entry</h6>
