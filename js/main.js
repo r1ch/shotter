@@ -29,7 +29,6 @@ const Shotter = {
 		this.connectSocket()
 	},
 	methods: {
-		uniqueNonEmpty(value, index, self){return value!="" && self.indexOf(value) === index},
 		connectSocket(){
 			this.socket = new WebSocket("wss://sockets.bradi.sh:8443")
 			this.socket.addEventListener("message",this.eventHandler)
@@ -59,10 +58,7 @@ const Shotter = {
 	},
 	computed: {
 		players : function(){
-			return this
-				.playersText
-				.split(/\r?\n/)
-				.filter(this.uniqueNonEmpty)
+			return this.playersText.split(/\r?\n/)
 		},
 		currentLine : function(){
 			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from >= this.epoch)
@@ -107,7 +103,7 @@ const Shotter = {
 				<div class = "col-3">
 					<h6>Who's who?</h6>
 					<ul class = "list-group" >
-						<map-entry v-for = "(entry,index) in currentPlayerMap" :key = "entry.player"
+						<map-entry v-for = "(entry,index) in currentPlayerMap" :key = "index"
 							:entry="entry"
 						></map-entry>
 					</ul>
@@ -147,11 +143,11 @@ ShotterApp.component('map-entry',{
 	props: ["entry"],
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center">
-			{{entry.player}}
+			<!--{{entry.player}}
 			<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
-			</span>
+			</span>-->
 		</li>
 		`
 })
