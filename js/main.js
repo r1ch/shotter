@@ -187,7 +187,7 @@ ShotterApp.component('recent-line', {
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
 		  <span v-for = "(count, character) in inPlayTokens" :key="character" href="#" class="card-link">
-			<i class="fas fa-glass-cheers"></i>{{count.local>1 ? `(${count.local})` : ``}}{{playerForCharacter(character)}}
+			<i class="fas fa-glass-cheers">{{count.local}}</i>{{playerForCharacter(character)}}
 		  </span>
 		</h6>
 		<p class="card-text" >
