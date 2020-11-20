@@ -57,7 +57,7 @@ const Shotter = {
 					let entry = {
 						character:this.characterForPlayer(player,line),
 						player:player,
-						index:index
+						index:`${index}-${player}-${character}`
 					}
 					console.log(entry)
 					return entry
