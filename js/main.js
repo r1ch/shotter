@@ -182,7 +182,7 @@ ShotterApp.component('recent-line', {
 		}
   	},
 	template: `
-	    <div class="card" :class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch}" v-if="isSwitch || inPlay">
+	    <div class="card" :class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch}" v-if="line.isSwitch || inPlay">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
