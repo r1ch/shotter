@@ -10,7 +10,7 @@ const Shotter = {
 			server: {isList:false},
 			room: {isList:false}
 		}
-		if(window.location.search)
+		if(window.location.search){
 			let queryOptions = {}
 			let queryString = decodeURIComponent(window.location.search).substring(1)
 			queryString
@@ -22,9 +22,9 @@ const Shotter = {
 					else queryOptions[param] = value
 				}
 			})
+		}
 		//overwrite defaults
 		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
-		
 		this.connectSocket()
 	},
 	methods: {
