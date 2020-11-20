@@ -12,7 +12,6 @@ const Shotter = {
 		};
 		const queryOptions = {};
 		if(window.location.search){
-
 			let queryString = decodeURIComponent(window.location.search).substring(1)
 			queryString
 			.split("&")
@@ -47,7 +46,7 @@ const Shotter = {
 			}
 		},
 		characterForPlayer(player,line = this.currentLine){
-			console.log(`Found:${player} at ${playerIndex}`)
+			let playerIndex = this.players.indexOf(player)
 			let len = this.paddedCharacters.length
 			let characterIndex = ((( playerIndex - line.switchCount ) % len) + len) % len
 			return this.paddedCharacters[characterIndex]	
