@@ -143,11 +143,11 @@ ShotterApp.component('map-entry',{
 	props: ["entry"],
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center">
-			<!--{{entry.player}}
+			{{entry.player}}
 			<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
-			</span>-->
+			</span>
 		</li>
 		`
 })
