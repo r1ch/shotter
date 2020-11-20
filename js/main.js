@@ -54,13 +54,12 @@ const Shotter = {
 		playerMap(line = this.currentLine){
 			return this.players.map(
 				(player,index)=>{
-					let entry = {
-						character:this.characterForPlayer(player,line),
+					let character = this.characterForPlayer(player,line)
+					return {
+						character:character,
 						player:player,
-						index:`${index}-${player}-${character}`
+						index:`${character}-${player}-${index}`
 					}
-					console.log(entry)
-					return entry
 				}
 			);
 		}
