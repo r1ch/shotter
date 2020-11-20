@@ -48,6 +48,7 @@ const Shotter = {
 		},
 		characterForPlayer(player,line = this.currentLine){
 			let playerIndex = this.players.indexOf(player)
+			console.log(`Found:${player} at ${playerIndex}`)
 			let len = this.paddedCharacters.length
 			let characterIndex = ((( playerIndex - line.switchCount ) % len) + len) % len
 			return this.paddedCharacters[characterIndex]	
@@ -103,10 +104,7 @@ const Shotter = {
 				<div class = "col-3">
 					<h6>Who's who?</h6>
 					<ul class = "list-group">
-{{currentPlayerMap}}
-						<map-entry v-for = "entry in currentPlayerMap"
-							:entry="entry"
-						></map-entry>
+						<map-entry v-for = "entry in currentPlayerMap" :entry="entry"></map-entry>
 					</ul>
 					<hr/>
 					<h6>Player entry</h6>
@@ -142,18 +140,12 @@ ShotterApp.component('film-state',{
 ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry"],
-	computed: {
-		debuggedEntry(){
-			console.log(JSON.stringify(this.entry))
-			return Object.assign({},this.entry)
-		}
-	},
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center">
-			{{debuggedEntry.player}}
+		{{entry.player}}
 			<span class="badge badge-pill" :class = "{'badge-primary': debuggedEntry.character=='Harry'}">
 				<i class="fas fa-bolt" v-if = "debuggedEntry.character=='Harry'"></i>
-				{{debuggedEntry.character}}
+				{{entry.character}}
 			</span>
 		</li>
 		`
