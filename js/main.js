@@ -141,12 +141,18 @@ ShotterApp.component('film-state',{
 ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry"],
+	computed: {
+		debuggedEntry(){
+			console.log(JSON.stringify(this.entry))
+			return Object.assign({},this.entry)
+		}
+	},
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center">
-			{{entry.player}}
-			<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">
-				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
-				{{entry.character}}
+			{{debuggedEntry.player}}
+			<span class="badge badge-pill" :class = "{'badge-primary': debuggedEntry.character=='Harry'}">
+				<i class="fas fa-bolt" v-if = "debuggedEntry.character=='Harry'"></i>
+				{{debuggedEntry.character}}
 			</span>
 		</li>
 		`
