@@ -178,7 +178,7 @@ ShotterApp.component('recent-line', {
 				{});// start empty
 		},
 		inPlay(){
-			return Object.keys(inPlayTokens).length>0
+			return Object.keys(this.inPlayTokens).length>0
 		}
   	},
 	template: `
