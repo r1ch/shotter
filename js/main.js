@@ -168,8 +168,14 @@ ShotterApp.component('recent-line', {
       			let characters = Object.keys(this.line.tokens)
       			return characters.length === 1 ? characters[0] : "Multiple"
     		},
-		characterTokens(){
-			return Object.assign({},this.line.tokens)
+		playerTokens(){
+			let players = this.line.playerMap.map(entry=>entry.player)
+			return Object.keys(this.line.tokens) //get all the mentions in the line
+				.filter(key => players.includes(key)) //do we have a player for each one
+				.reduce((obj, key) => { //build and obj, from keys
+					obj[key] = this.line.tokens[key]; //we filtered this key, so grab the tokens for it
+					return obj;}, // and go again
+				{});// start empty
 		}
   	},
 	template: `
