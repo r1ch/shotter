@@ -5,20 +5,21 @@ const Shotter = {
 	}),
 	created: function(){
 		//unpack the query string
-		const options = {
+		const queryOptionsTypes = {
 			players: {isList:true},
 			server: {isList:false},
 			room: {isList:false}
-		}
+		};
+		const queryOptions = {};
 		if(window.location.search){
-			let queryOptions = {}
+
 			let queryString = decodeURIComponent(window.location.search).substring(1)
 			queryString
 			.split("&")
 			.forEach(pair=>{
 				let [param,value] = pair.split("=")
-				if(options[param]){
-					if(options[param].isList) queryOptions[param] = value.split(",")
+				if(queryOptionsTypes[param]){
+					if(queryOptionsTypes[param].isList) queryOptions[param] = value.split(",")
 					else queryOptions[param] = value
 				}
 			})
