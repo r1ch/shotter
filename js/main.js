@@ -87,8 +87,6 @@ const Shotter = {
 		currentPlayerMap: function(){
 			return this.playerMap()
 		}
-		
-		//Want to "bake" each line - so we do the heavy lifting here, not pass it down to the line render
 	},
 	keyLines: lines.key,
 	allLines: lines.all,
@@ -180,7 +178,10 @@ ShotterApp.component('recent-line', {
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
 		  <span v-for = "(count, character) in characterTokens" :key="character" href="#" class="card-link">
-			<i class="fas fa-glass-cheers"></i> {{playerForCharacter(character)}}
+			  <span class="fa-layers fa-fw">
+				    <i class="fas fa-cheers"></i>
+				    <span class="fa-layers-counter" style="background:Tomato">{{count.local}}</span>
+			  </span>
 		  </span>
 		</h6>
 		<p class="card-text" >
