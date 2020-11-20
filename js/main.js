@@ -49,7 +49,7 @@ const Shotter = {
 		characterForPlayer(player,line = this.currentLine){
 			let playerIndex = this.players.indexOf(player)
 			let len = this.paddedCharacters.length
-			let characterIndex = ((( playerIndex - line.voldeCount ) % len) + len) % len
+			let characterIndex = ((( playerIndex - line.switchCount ) % len) + len) % len
 			return this.paddedCharacters[characterIndex]	
 		},
 		playerMap(line = this.currentLine){
@@ -70,7 +70,7 @@ const Shotter = {
 				lineIndex--;
 				return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
 			}
-			return {voldeCount:0, lineIndex:-1} //not yet started,
+			return {switchCount:0, lineIndex:-1} //not yet started,
 		},
 		paddedCharacters: function(){
 			return this.players.map((player,index)=>this.$options.characters[index]||"Hogwarts Students");
@@ -171,13 +171,11 @@ ShotterApp.component('recent-line', {
       			return characters.length === 1 ? characters[0] : "Multiple"
     		},
 		characterTokens(){
-			let tokens = Object.assign({},this.line.tokens)
-			delete tokens.Voldemort
-			return tokens
+			return Object.assign({},this.line.tokens)
 		}
   	},
 	template: `
-	    <div class="card" :class="{'text-white':line.tokens.Voldemort, 'bg-dark':line.tokens.Voldemort}">
+	    <div class="card" :class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch}">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
@@ -188,7 +186,7 @@ ShotterApp.component('recent-line', {
 		<p class="card-text" >
 		    {{ line.speech.join("&nbsp;") }}
 		</p>
-		<div class="card-text" v-if="line.tokens.Voldemort">
+		<div class="card-text" v-if="line.isSwitch">
 		  <h6><i class="fas fa-redo"></i> Switch</h6>
 		  <span v-for = "entry in line.playerMap" :key="entry.player">
 		    {{entry.player}} <small>drink for</small> {{entry.character}}<br>
