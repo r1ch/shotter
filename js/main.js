@@ -25,7 +25,7 @@ const Shotter = {
 			})
 		}
 		//overwrite defaults
-		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
+		//if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
 		this.connectSocket()
 	},
 	methods: {
