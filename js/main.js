@@ -179,7 +179,7 @@ ShotterApp.component('recent-line', {
 		<h6 class="card-subtitle mb-2 text-muted">
 		  <span v-for = "(count, character) in characterTokens" :key="character" href="#" class="card-link">
 			  <span class="fa-layers fa-fw">
-				    <i class="fas fa-cheers"></i>
+				    <i class="fas fa-glass-cheers"></i>
 				    <span class="fa-layers-counter" style="background:Tomato">{{count.local}}</span>
 			  </span>
 		  </span>
