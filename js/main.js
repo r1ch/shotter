@@ -102,8 +102,9 @@ const Shotter = {
 			<div class = "row">
 				<div class = "col-3">
 					<h6>Who's who?</h6>
-					<ul class = "list-group" >
-						<map-entry v-for = "(entry,index) in currentPlayerMap" :key = "index"
+					<ul class = "list-group">
+{{currentPlayerMap}}
+						<map-entry v-for = "entry in currentPlayerMap"
 							:entry="entry"
 						></map-entry>
 					</ul>
