@@ -25,7 +25,7 @@ const Shotter = {
 			})
 		}
 		//overwrite defaults
-		//if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
+		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
 		this.connectSocket()
 	},
 	methods: {
@@ -103,7 +103,7 @@ const Shotter = {
 				<div class = "col-3">
 					<h6>Who's who?</h6>
 					<ul class = "list-group" >
-						<map-entry v-for = "entry in currentPlayerMap" :key = "entry.player"
+						<map-entry v-for = "(entry,index) in currentPlayerMap" :key = "index"
 							:entry="entry"
 						></map-entry>
 					</ul>
