@@ -29,7 +29,7 @@ const Shotter = {
 		this.connectSocket()
 	},
 	methods: {
-		uniqueNonEmpty(value, index, self){value!="",self.indexOf(value) === index},
+		uniqueNonEmpty(value, index, self){value!="" && self.indexOf(value) === index},
 		connectSocket(){
 			this.socket = new WebSocket("wss://sockets.bradi.sh:8443")
 			this.socket.addEventListener("message",this.eventHandler)
