@@ -168,22 +168,25 @@ ShotterApp.component('recent-line', {
       			let characters = Object.keys(this.line.tokens)
       			return characters.length === 1 ? characters[0] : "Multiple"
     		},
-		playerTokens(){
-			let players = this.line.playerMap.map(entry=>entry.player)
+		inPlayTokens(){
+			let characters = this.line.playerMap.map(entry=>entry.character)
 			return Object.keys(this.line.tokens) //get all the mentions in the line
-				.filter(key => players.includes(key)) //do we have a player for each one
+				.filter(key => characters.includes(key)) //do we have a player for them
 				.reduce((obj, key) => { //build and obj, from keys
 					obj[key] = this.line.tokens[key]; //we filtered this key, so grab the tokens for it
 					return obj;}, // and go again
 				{});// start empty
+		},
+		inPlay(){
+			return Object.keys(inPlayTokens).length>0
 		}
   	},
 	template: `
-	    <div class="card" :class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch}">
+	    <div class="card" :class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch}" v-if="isSwitch || inPlay">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
-		  <span v-for = "(count, character) in playerTokens" :key="character" href="#" class="card-link">
+		  <span v-for = "(count, character) in inPlayTokens" :key="character" href="#" class="card-link">
 			  <span class="fa-layers fa-fw">
 				    <i class="fas fa-glass-cheers"></i>
 				    <span class="fa-layers-counter" style="background:Tomato">{{count.local}}</span>
