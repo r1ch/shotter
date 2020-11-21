@@ -26,6 +26,12 @@ const Parser = {
 	},
 	mounted: function(){this.path = "subs/Goblet.srt"},
 	computed: {
+		output(){
+			return {
+				key: this.processedLines.filter(line=>line.tokens),
+				all: this.processedLines
+			}
+		},
 		searches(){
 			let s = false
 			try{
@@ -123,7 +129,7 @@ const Parser = {
 		<div class="panel panel-error" v-if="error">
 			  <div class="panel-body">{{error}}</div>
 		</div>
-		{{processedLines}}
+		{{output}}
 		</div>
 	`
 }
