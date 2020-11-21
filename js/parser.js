@@ -120,8 +120,8 @@ const Parser = {
 
 const ParserApp = Vue.createApp(Parser)
 
-ParserApp.component('film-state',{
-})
+/*ParserApp.component('film-state',{
+})*/
 
 ParserApp.mount('#app')
 
