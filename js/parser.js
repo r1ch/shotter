@@ -1,17 +1,20 @@
 const Parser = {
 	data: ()=>({
 		path: "subs/Goblet.srt",
+		raw: "",
 		error: false
 	}),
-	computed: {
-		raw(){
+	watch: {
+		path: function(){
 			axios.get(this.path)
 			.then(({data})=>{
 				this.error = false;
-				this.raw = data;
+				this.raw = data
 			})
 			.catch(error=>this.error=error)
-		},
+		}
+	},
+	computed: {
 		processedLines(){
 			const searches = [
 			    {match: "Ron",                          name: "Ron",           certain: true,  switch: false},
