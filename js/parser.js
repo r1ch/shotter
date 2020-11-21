@@ -28,8 +28,7 @@ const Parser = {
 	computed: {
 		output(){
 			return {
-				key: this.processedLines.filter(line=>line.tokens),
-				all: this.processedLines
+				key: this.processedLines.filter(line=>line.tokens)
 			}
 		},
 		searches(){
