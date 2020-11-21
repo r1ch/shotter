@@ -101,7 +101,6 @@ const Shotter = {
 	},
 	keyLines: lines.key,
 	allLines: lines.all,
-	characters: ["Harry", "Ron", "Hermione"],
 	template: `
 		<div class = "container">
 			<div class = "row">
