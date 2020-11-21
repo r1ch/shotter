@@ -2,7 +2,17 @@ const Parser = {
 	data: ()=>({
 		path: "",
 		raw: "",
-		error: false
+		error: false,
+		searchesText = JSON.stringify([
+			    {match: "Ron",                          name: "Ron",           certain: true,  switch: false},
+			    {match: "(?<!(Ron |Ronald ))Weasley",   name: "Ron",           certain: false, switch: false},
+			    {match: "Harry",                        name: "Harry",         certain: true,  switch: false},
+			    {match: "(?<!Harry )Potter",            name: "Harry",         certain: false, switch: false},
+			    {match: "Hermione",                     name: "Hermione",      certain: true,  switch: false},
+			    {match: "(?<!Hermione )Grainger",       name: "Hermione",      certain: true,  switch: false},
+			    {match: "Dumbledore",                   name: "Dumbledore",    certain: true,  switch: false},
+			    {match: "Voldemort",                    name: "Voldemort",     certain: true,  switch: true}
+			])
 	}),
 	watch: {
 		path: function(){
@@ -16,18 +26,17 @@ const Parser = {
 	},
 	mounted: function(){this.path = "subs/Goblet.srt"},
 	computed: {
+		searches(){
+			let s = false
+			try{
+				spec = JSON.parse(this.searchesText)
+			} catch(e) {
+				//hahahahaha
+			}
+			return s ? s : [];
+		},	
 		processedLines(){
-			const searches = [
-			    {match: "Ron",                          name: "Ron",           certain: true,  switch: false},
-			    {match: "(?<!(Ron |Ronald ))Weasley",   name: "Ron",           certain: false, switch: false},
-			    {match: "Harry",                        name: "Harry",         certain: true,  switch: false},
-			    {match: "(?<!Harry )Potter",            name: "Harry",         certain: false, switch: false},
-			    {match: "Hermione",                     name: "Hermione",      certain: true,  switch: false},
-			    {match: "(?<!Hermione )Grainger",       name: "Hermione",      certain: true,  switch: false},
-			    {match: "Dumbledore",                   name: "Dumbledore",    certain: true,  switch: false},
-			    {match: "Voldemort",                    name: "Voldemort",     certain: true,  switch: true}
-			]
-			const tokens = searches.map(search=>({
+			const tokens = this.searches.map(search=>({
 			    name: search.name,
 			    matcher: new RegExp(`${search.match}`,'g'),
 			    certain: search.certain,
@@ -109,7 +118,8 @@ const Parser = {
 	},
 	template: `
 		<div>
-		<input type = "text" v-model="path"/>
+		<input type = "text" v-model="path"/><br>
+		<textarea v-model="searchesText"></textarea><br>
 		<div class="panel panel-error" v-if="error">
 			  <div class="panel-body">{{error}}</div>
 		</div>
