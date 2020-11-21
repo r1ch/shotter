@@ -2,7 +2,7 @@ const Parser = {
 	data: ()=>({
 		raw : ""
 	}),
-	mounted:{
+	mounted: function(){
 		axios.get("subs/Goblet.srt")
 		.then(({data})=>{
 			this.raw = data;
