@@ -29,7 +29,7 @@ const Parser = {
 		searches(){
 			let s = false
 			try{
-				spec = JSON.parse(this.searchesText)
+				s = JSON.parse(this.searchesText)
 			} catch(e) {
 				//hahahahaha
 			}
