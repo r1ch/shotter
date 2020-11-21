@@ -1,6 +1,6 @@
 const Parser = {
 	data: ()=>({
-		raw = ""
+		raw : ""
 	}),
 	mounted:{
 		axios.get("subs/Goblet.srt")
