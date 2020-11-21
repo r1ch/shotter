@@ -1,15 +1,17 @@
 const Parser = {
 	data: ()=>({
-		raw : ""
+		path: "subs/Goblet.srt",
+		error: false
 	}),
-	mounted: function(){
-		axios.get("subs/Goblet.srt")
-		.then(({data})=>{
-			this.raw = data;
-		})
-		.catch(console.error)
-	},
 	computed: {
+		raw(){
+			axios.get(this.path)
+			.then(({data})=>{
+				this.error = false;
+				this.raw = data;
+			})
+			.catch(error=>this.error=error)
+		}
 		processedLines(){
 			const searches = [
 			    {match: "Ron",                          name: "Ron",           certain: true,  switch: false},
@@ -102,7 +104,13 @@ const Parser = {
 		}
 	},
 	template: `
+		<div>
+		<input type = "text" v-model="path"/>
+		<div class="panel panel-error" v-if="error">
+			  <div class="panel-body">{{error}}</div>
+		</div>
 		{{processedLines}}
+		</div>
 	`
 }
 
