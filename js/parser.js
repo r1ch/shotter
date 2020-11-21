@@ -11,7 +11,7 @@ const Parser = {
 				this.raw = data;
 			})
 			.catch(error=>this.error=error)
-		}
+		},
 		processedLines(){
 			const searches = [
 			    {match: "Ron",                          name: "Ron",           certain: true,  switch: false},
