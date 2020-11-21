@@ -100,7 +100,6 @@ const Shotter = {
 		}
 	},
 	keyLines: lines.key,
-	allLines: lines.all,
 	template: `
 		<div class = "container">
 			<div class = "row">
