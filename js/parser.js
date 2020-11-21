@@ -3,7 +3,7 @@ const Parser = {
 		path: "",
 		raw: "",
 		error: false,
-		searchesText = JSON.stringify([
+		searchesText : JSON.stringify([
 			    {match: "Ron",                          name: "Ron",           certain: true,  switch: false},
 			    {match: "(?<!(Ron |Ronald ))Weasley",   name: "Ron",           certain: false, switch: false},
 			    {match: "Harry",                        name: "Harry",         certain: true,  switch: false},
