@@ -7,7 +7,7 @@ const Shotter = {
 		lines: []
 	}),
 	watch: {
-		file: {
+		file: function(){
 			axios.get(this.file)
 			.then(({data})=>this.lines=data)
 			.error(console.error)
