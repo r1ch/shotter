@@ -2,15 +2,25 @@ const Shotter = {
 	data: ()=>({
 		epoch: 0,
 		playersText: ["Player 1", "Player 2"].join("\n"),
-		characters: ["Harry","Ron","Hermione"]
+		characters: ["Harry","Ron","Hermione"],
+		file: "",
+		lines: []
 	}),
+	watch: {
+		file: {
+			axios.get(this.file)
+			.then(({data})=>this.lines=data)
+			.error(console.error)
+		}
+	},
 	created: function(){
 		//unpack the query string
 		const queryOptionsTypes = {
 			players: {isList:true},
 			characters: {isList:true},
 			server: {isList:false},
-			room: {isList:false}
+			room: {isList:false},
+			file: {isList:false}
 		};
 		const queryOptions = {};
 		if(window.location.search){
@@ -28,6 +38,8 @@ const Shotter = {
 		//overwrite defaults
 		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
 		if(queryOptions.characters) this.characters = queryOptions.characters;
+		if(queryOptions.file) this.file = queryOptions.file
+		else this.file = "lines/goblet.json"
 		this.connectSocket()
 	},
 	methods: {
@@ -72,14 +84,14 @@ const Shotter = {
 			return this.playersText.split(/\r?\n/)
 		},
 		currentLine : function(){
-			let lineIndex = this.$options.keyLines.findIndex(line=>line.timeEpoch.from >= this.epoch)
+			let lineIndex = this.lines.findIndex(line=>line.timeEpoch.from >= this.epoch)
 			//This finds the next line, so really we need to find the previous one, and account
 			//For end effects
 			if (lineIndex != 0) {
 				//0 is the first line
-				if(lineIndex==-1) lineIndex = this.$options.keyLines.length //if finished
+				if(lineIndex==-1) lineIndex = this.lines.length //if finished
 				lineIndex--;
-				return {...this.$options.keyLines[lineIndex], lineIndex:lineIndex}
+				return {...this.lines[lineIndex], lineIndex:lineIndex}
 			}
 			return {switchCount:0, lineIndex:-1} //not yet started,
 		},
@@ -88,7 +100,7 @@ const Shotter = {
 		},
 		recentLines: function(){
 			if(this.currentLine.lineIndex==-1) return []
-			let lastFive = this.$options.keyLines.slice(Math.max(0,this.currentLine.lineIndex-5),this.currentLine.lineIndex+1)
+			let lastFive = this.lines.slice(Math.max(0,this.currentLine.lineIndex-5),this.currentLine.lineIndex+1)
 			return lastFive.reverse()
 				.map(line=>({
 					...line,
@@ -99,7 +111,6 @@ const Shotter = {
 			return this.playerMap()
 		}
 	},
-	keyLines: lines.key,
 	template: `
 		<div class = "container">
 			<div class = "row">
