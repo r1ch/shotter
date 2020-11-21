@@ -1,6 +1,7 @@
 const Parser = {
 	data: ()=>({
 	}),
+	
 	template: `
 	`
 }
