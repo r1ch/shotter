@@ -1,6 +1,6 @@
 const Parser = {
 	data: ()=>({
-		path: "subs/Goblet.srt",
+		path: "",
 		raw: "",
 		error: false
 	}),
@@ -14,6 +14,7 @@ const Parser = {
 			.catch(error=>this.error=error)
 		}
 	},
+	mounted: function(){this.path = "subs/Goblet.srt"},
 	computed: {
 		processedLines(){
 			const searches = [
