@@ -119,7 +119,7 @@ const Parser = {
 	template: `
 		<div>
 		<input type = "text" v-model="path"/><br>
-		<textarea v-model="searchesText"></textarea><br>
+		<textarea v-model="searchesText" style = "width:100%"></textarea><br>
 		<div class="panel panel-error" v-if="error">
 			  <div class="panel-body">{{error}}</div>
 		</div>
