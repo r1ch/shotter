@@ -10,7 +10,7 @@ const Shotter = {
 		file: function(){
 			axios.get(this.file)
 			.then(({data})=>this.lines=data)
-			.error(console.error)
+			.catch(console.error)
 		}
 	},
 	created: function(){
