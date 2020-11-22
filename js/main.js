@@ -138,7 +138,6 @@ const Shotter = {
 				<div class = "col-8">
 					<h6>Imbibe</h6>
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
-							class = "time-to-drink"
 							:line="line"
 							:epoch="epoch"
 					></recent-line>
@@ -191,7 +190,7 @@ ShotterApp.component('recent-line', {
 	},
   	computed: {
 		isFresh(){
-			return line.timeEpoch.to - this.epoch < 2000
+			return this.line.timeEpoch.to - this.epoch > -5000
 		},
     		title(){
       			let characters = Object.keys(this.line.tokens)
@@ -211,9 +210,9 @@ ShotterApp.component('recent-line', {
 		}
   	},
 	template: `
-	    <div class="card" 
-		:class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch, 'bg-primary': line.isFresh && !line.isSwitch}" 
-		v-if="line.isSwitch || inPlay">
+		<div class="card" 
+			:class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch, 'fresh': !line.isSwitch}" 
+			v-if="line.isSwitch || inPlay">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">

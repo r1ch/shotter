@@ -1,0 +1,12 @@
+/* The animation code */
+@keyframes freshAnimation {
+    from {background-color: lightblue;}
+    to {background-color: white;}
+  }
+  
+  /* The element to apply the animation to */
+  .fresh {
+    background-color: white;
+    animation-name: freshAnimation;
+    animation-duration: 5s;
+  }

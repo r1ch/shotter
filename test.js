@@ -1,7 +1,7 @@
 //Libraries
 const WebSocket = require("ws")
 const BROADCAST_INTERVAL = 500;
-let BROADCAST_POSITION = 0;
+let BROADCAST_POSITION = 220;
 
 const wss = new WebSocket.Server({ port : 8080 });
 
