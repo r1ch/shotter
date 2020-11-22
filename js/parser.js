@@ -4,14 +4,15 @@ const Parser = {
 		raw: "",
 		error: false,
 		searchesText : JSON.stringify([
-			    {match: "Ron",                          name: "Ron",           certain: true,  switch: false},
-			    {match: "(?<!(Ron |Ronald ))Weasley",   name: "Ron",           certain: false, switch: false},
-			    {match: "Harry",                        name: "Harry",         certain: true,  switch: false},
-			    {match: "(?<!Harry )Potter",            name: "Harry",         certain: false, switch: false},
-			    {match: "Hermione",                     name: "Hermione",      certain: true,  switch: false},
-			    {match: "(?<!Hermione )Grainger",       name: "Hermione",      certain: true,  switch: false},
-			    {match: "Dumbledore",                   name: "Dumbledore",    certain: true,  switch: false},
-			    {match: "Voldemort",                    name: "Voldemort",     certain: true,  switch: true}
+			    {match: "Ron",                          name: "Ron",          	certain: true,  switch: false},
+			    {match: "(?<!(Ron |Ronald ))Weasley",   name: "Ron",          	certain: false, switch: false},
+			    {match: "Harry",                        name: "Harry",        	certain: true,  switch: false},
+			    {match: "(?<!Harry )Potter",            name: "Harry",        	certain: false, switch: false},
+			    {match: "Hermione",                     name: "Hermione",     	certain: true,  switch: false},
+			    {match: "(?<!Hermione )Grainger",       name: "Hermione",		certain: true,  switch: false},
+				{match: "Albus",						name: "Dumbledore",		certain: true,   switch: false},
+				{match: "(?<!Albus )Dumbledore",		name: "Dumbledore",		certain: true,   switch: false},
+			    {match: "Voldemort",                    name: "Voldemort",      certain: true,  switch: true}
 			])
 	}),
 	watch: {

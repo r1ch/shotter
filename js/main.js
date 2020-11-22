@@ -120,7 +120,7 @@ const Shotter = {
 				></film-state>
 			</div>
 			<div class = "row">
-				<div class = "col-3">
+				<div class = "col-4">
 					<h6>Who's who?</h6>
 					<ul class = "list-group">
 						<map-entry v-for = "entry in currentPlayerMap" :entry="entry" :key="entry.index"></map-entry>
@@ -129,7 +129,7 @@ const Shotter = {
 					<h6>Player entry</h6>
 					<textarea v-model="playersText"></textarea>
 				</div>
-				<div class = "col-9">
+				<div class = "col-8">
 					<h6>Imbibe</h6>
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
 							:line="line"

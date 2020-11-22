@@ -10,7 +10,11 @@
                 <script src="https://kit.fontawesome.com/b2603ff2ae.js" crossorigin="anonymous"></script>
                 <script src="https://unpkg.com/vue@next"></script>
                 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-                <script src="js/config.js"></script>
+                <script type = 'text/javascript'>
+                        config = {
+                                socketString: '{{jekyll.environment}}' === 'development' ? 'ws://localhost:8080' : 'wss://sockets.bradi.sh:8443'
+                        }
+                </script>
         </head>
         <body>{{content}}</body>
 </html>
