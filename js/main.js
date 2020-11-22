@@ -132,11 +132,14 @@ const Shotter = {
 					<hr/>
 					<h6>Player entry</h6>
 					<textarea v-model="playersText"></textarea>
+					<h6>Spares</h6>
+					<input type = "text" v-model="overflow"/>
 				</div>
 				<div class = "col-8">
 					<h6>Imbibe</h6>
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
 							:line="line"
+							:epoch="epoch"
 					></recent-line>
 				</div>
 			</div>
@@ -177,7 +180,7 @@ ShotterApp.component('map-entry',{
 
 ShotterApp.component('recent-line', {
 	data: () => ({}),
-	props: ["line"],
+	props: ["line","epoch"],
 	methods: {
 		playerForCharacter(character){
 			let entry = this.line.playerMap.find(entry=>entry.character==character)
@@ -186,6 +189,9 @@ ShotterApp.component('recent-line', {
 		}
 	},
   	computed: {
+		isFresh(){
+			return line.timeEpoch.to - this.epoch < 2000
+		},
     		title(){
       			let characters = Object.keys(this.line.tokens)
       			return characters.length === 1 ? characters[0] : "Multiple"
@@ -204,7 +210,9 @@ ShotterApp.component('recent-line', {
 		}
   	},
 	template: `
-	    <div class="card" :class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch}" v-if="line.isSwitch || inPlay">
+	    <div class="card" 
+		:class="{'text-white':line.isSwitch, 'bg-dark':line.isSwitch, 'bg-primary': line.isFresh && !line.isSwitch}" 
+		v-if="line.isSwitch || inPlay">
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
