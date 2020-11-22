@@ -57,7 +57,7 @@ const Shotter = {
 				try{
 					json = JSON.parse(event.data)
 				} catch (e) {
-					console.error(`Dropped: ${JSON.stringify(event)}`)
+					console.error(`Dropped: ${JSON.stringify(event.data)}`)
 				}
 				if(json.position){
 					this.epoch = json.position * 1000;
