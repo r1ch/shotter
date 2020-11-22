@@ -11,8 +11,8 @@ bundle exec jekyll serve
 ```
 
 ## Get the websocket stub running
-Edit config.js to point to `ws://localhost:8080`
 ```
 npm ci
 node test.js
 ```
+Local environment detection via jekyll.environment (see _layouts/default to see the detection code)
