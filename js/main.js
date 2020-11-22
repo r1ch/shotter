@@ -136,6 +136,7 @@ const Shotter = {
 				<div class = "col-8">
 					<h6>Imbibe</h6>
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
+							class = "time-to-drink"
 							:line="line"
 					></recent-line>
 				</div>
