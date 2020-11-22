@@ -44,7 +44,7 @@ const Shotter = {
 	},
 	methods: {
 		connectSocket(){
-			this.socket = new WebSocket("wss://sockets.bradi.sh:8443")
+			this.socket = new WebSocket(config.socketString)
 			this.socket.addEventListener("message",this.eventHandler)
 		},
 		eventHandler(event){
