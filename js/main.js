@@ -21,7 +21,7 @@ const Shotter = {
 		},
 		socketAge: function(){
 			if(this.socketAge > this.$options.timeout){
-				console.log(`Reconnecting stale socket, ${socketAge/1000} seconds since last message`)
+				console.log(`Reconnecting stale socket, ${this.socketAge/1000} seconds since last message`)
 				// appears the socket has died?
 				// reset the timeout
 				this.playstate.issuedAt = Date.now()
