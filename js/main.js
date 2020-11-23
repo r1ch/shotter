@@ -11,7 +11,7 @@ const Shotter = {
 		file: "",
 		lines: []
 	}),
-	timeout: 5000
+	timeout: 5000,
 	watch: {
 		file: function(){
 			axios.get(this.file)
