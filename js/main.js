@@ -18,12 +18,11 @@ const Shotter = {
 			.then(({data})=>this.lines=data)
 			.catch(console.error)
 		},
-		'playstate.issuedAt': function(){
-			let socketAge = Date.now()-this.playstate.issuedAt
-			if(socketAge > this.$options.timeout){
+		socketAge: function(){
+			if(this.socketAge > this.$options.timeout){
 				console.log(`Reconnecting stale socket, ${socketAge/1000} seconds since last message`)
 				// appears the socket has died?
-				// push forward the timeout
+				// reset the timeout
 				this.playstate.issuedAt = Date.now()
 				this.connectSocket()
 			}
@@ -98,6 +97,9 @@ const Shotter = {
 		}
 	},
 	computed: {
+		socketAge : function(){
+			return Date.now() - this.playstate.issuedAt;
+		},
 		players : function(){
 			return this.playersText.split(/\r?\n/)
 		},
