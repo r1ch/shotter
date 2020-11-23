@@ -128,7 +128,8 @@ const Shotter = {
 			<div class = "row">
 				<film-state 
 					class = "col-12"
-					:epoch="epoch"
+					:epoch="epoch",
+					:paused="paused"
 				></film-state>
 			</div>
 			<div class = "row">
@@ -159,7 +160,7 @@ const ShotterApp = Vue.createApp(Shotter)
 
 ShotterApp.component('film-state',{
 	data: ()=>({}),
-	props: ["epoch"],
+	props: ["epoch","paused"],
 	computed : {
 		timeString(){
 			let seconds = Math.floor((this.epoch / 1000) % 60);
@@ -168,7 +169,11 @@ ShotterApp.component('film-state',{
 			return `${hours}h ${minutes}m ${seconds}s`
 		}
 	},
-	template: `<h2>{{timeString}}</h2>`
+	template: `
+		<div>
+			<h2>{{timeString}}</h2>
+			<small v-if = "paused">Paused</small>
+		</div>`
 })
 
 ShotterApp.component('map-entry',{
