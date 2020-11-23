@@ -1,6 +1,8 @@
 const Shotter = {
 	data: ()=>({
 		epoch: 0,
+		paused: true,
+		lastMessage: false,
 		playersText: ["Player 1", "Player 2"].join("\n"),
 		characters: ["Harry","Ron","Hermione"],
 		overflow: "Hogwarts Students",
@@ -61,6 +63,12 @@ const Shotter = {
 				}
 				if(json.position){
 					this.epoch = json.position * 1000;
+				}
+				if(json.paused){
+					this.paused = json.paused
+				}
+				if(json.issuedAt){
+					this.lastMessage = json.issuedAt
 				}
 			}
 		},
