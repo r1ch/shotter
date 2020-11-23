@@ -25,6 +25,8 @@ const Shotter = {
 				// appears the socket has died?
 				// reset the timeout
 				this.playstate.issuedAt = Date.now()
+				
+				if(this.socket) this.socket.close()
 				this.connectSocket()
 			}
 		}
@@ -66,7 +68,6 @@ const Shotter = {
 	},
 	methods: {
 		connectSocket(){
-			delete this.socket
 			this.socket = new WebSocket(config.socketString)
 			this.socket.addEventListener("message",this.eventHandler)
 		},
