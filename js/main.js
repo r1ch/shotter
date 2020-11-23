@@ -66,6 +66,7 @@ const Shotter = {
 	},
 	methods: {
 		connectSocket(){
+			delete this.socket
 			this.socket = new WebSocket(config.socketString)
 			this.socket.addEventListener("message",this.eventHandler)
 		},
