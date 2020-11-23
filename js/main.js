@@ -32,6 +32,8 @@ const Shotter = {
 		}
 	},
 	created: function(){
+		this.connectSocket()
+		
 		//unpack the query string
 		const queryOptionsTypes = {
 			players: {isList:true},
@@ -61,7 +63,6 @@ const Shotter = {
 		if(queryOptions.file) this.file = queryOptions.file
 		else this.file = "lines/goblet.json"
 
-		this.connectSocket()
 		setInterval(()=>{
          		this.now = Date.now()
 		}, 1000)
