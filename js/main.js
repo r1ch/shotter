@@ -123,8 +123,8 @@ const Shotter = {
 			<div class = "row">
 				<film-state 
 					class = "col-12"
-					:position="playstate.position"
-					:paused="paused"
+					:position = "playstate.position"
+					:paused = "playstate.paused"
 				></film-state>
 			</div>
 			<div class = "row">
@@ -165,10 +165,8 @@ ShotterApp.component('film-state',{
 		}
 	},
 	template: `
-		<div>
-			<h2>{{timeString}}</h2>
-			<small v-if = "paused">Paused</small>
-		</div>`
+		<h2>{{timeString}} <small v-if = "paused">(Paused)</small></h2>
+		`
 })
 
 ShotterApp.component('map-entry',{
