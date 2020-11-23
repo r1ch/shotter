@@ -128,7 +128,7 @@ const Shotter = {
 			<div class = "row">
 				<film-state 
 					class = "col-12"
-					:epoch="epoch",
+					:epoch="epoch"
 					:paused="paused"
 				></film-state>
 			</div>
