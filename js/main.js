@@ -10,7 +10,7 @@ const Shotter = {
 		overflow: "Hogwarts Students",
 		file: "",
 		lines: [],
-		now
+		now: Date.now()
 	}),
 	timeout: 5000,
 	watch: {
