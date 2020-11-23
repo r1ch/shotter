@@ -1,8 +1,10 @@
 const Shotter = {
 	data: ()=>({
-		epoch: 0,
-		paused: true,
-		lastMessage: false,
+		playstate: {
+			position: 0,
+			paused: true,
+			issuedAt: Date.now()
+		},
 		playersText: ["Player 1", "Player 2"].join("\n"),
 		characters: ["Harry","Ron","Hermione"],
 		overflow: "Hogwarts Students",
@@ -62,14 +64,9 @@ const Shotter = {
 					console.error(`Dropped: ${JSON.stringify(event.data)}`)
 				}
 				if(json.position){
-					this.epoch = json.position * 1000;
+					json.position *= 1000;
 				}
-				if(json.paused){
-					this.paused = json.paused
-				}
-				if(json.issuedAt){
-					this.lastMessage = json.issuedAt
-				}
+				this.playstate = json
 			}
 		},
 		characterForPlayer(player,line = this.currentLine){
@@ -96,7 +93,7 @@ const Shotter = {
 			return this.playersText.split(/\r?\n/)
 		},
 		currentLine : function(){
-			let lineIndex = this.lines.findIndex(line=>line.timeEpoch.from >= this.epoch)
+			let lineIndex = this.lines.findIndex(line=>line.timeEpoch.from >= this.playstate.position)
 			//This finds the next line, so really we need to find the previous one, and account
 			//For end effects
 			if (lineIndex != 0) {
@@ -128,7 +125,7 @@ const Shotter = {
 			<div class = "row">
 				<film-state 
 					class = "col-12"
-					:epoch="epoch"
+					:position="playstate.position"
 					:paused="paused"
 				></film-state>
 			</div>
@@ -148,7 +145,7 @@ const Shotter = {
 					<h6>Imbibe</h6>
 					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
 							:line="line"
-							:epoch="epoch"
+							:position="playstate.position"
 					></recent-line>
 				</div>
 			</div>
@@ -160,12 +157,12 @@ const ShotterApp = Vue.createApp(Shotter)
 
 ShotterApp.component('film-state',{
 	data: ()=>({}),
-	props: ["epoch","paused"],
+	props: ["position","paused"],
 	computed : {
 		timeString(){
-			let seconds = Math.floor((this.epoch / 1000) % 60);
-			let minutes = Math.floor((this.epoch / 1000 / 60 ) % 60);
-			let hours = Math.floor(this.epoch / 1000 / 60 / 60);
+			let seconds = Math.floor((this.position / 1000) % 60);
+			let minutes = Math.floor((this.position / 1000 / 60 ) % 60);
+			let hours = Math.floor(this.position / 1000 / 60 / 60);
 			return `${hours}h ${minutes}m ${seconds}s`
 		}
 	},
@@ -193,7 +190,7 @@ ShotterApp.component('map-entry',{
 
 ShotterApp.component('recent-line', {
 	data: () => ({}),
-	props: ["line","epoch"],
+	props: ["line","postision"],
 	methods: {
 		playerForCharacter(character){
 			let entry = this.line.playerMap.find(entry=>entry.character==character)
@@ -203,7 +200,7 @@ ShotterApp.component('recent-line', {
 	},
   	computed: {
 		isFresh(){
-			return this.line.timeEpoch.to - this.epoch > -5000
+			return this.line.timeEpoch.to - this.position > -5000
 		},
     		title(){
       			let characters = Object.keys(this.line.tokens)
