@@ -11,11 +11,22 @@ const Shotter = {
 		file: "",
 		lines: []
 	}),
+	timeout: 5000
 	watch: {
 		file: function(){
 			axios.get(this.file)
 			.then(({data})=>this.lines=data)
 			.catch(console.error)
+		},
+		'playstate.issuedAt': function(){
+			let socketAge = Date.now()-this.playstate.issuedAt
+			if(socketAge > this.$options.timeout){
+				console.log(`Reconnecting stale socket, ${socketAge/1000} seconds since last message`)
+				// appears the socket has died?
+				// push forward the timeout
+				this.playstate.issuedAt = Date.now()
+				this.connectSocket()
+			}
 		}
 	},
 	created: function(){
