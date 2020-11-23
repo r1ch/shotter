@@ -9,7 +9,8 @@ const Shotter = {
 		characters: ["Harry","Ron","Hermione"],
 		overflow: "Hogwarts Students",
 		file: "",
-		lines: []
+		lines: [],
+		now
 	}),
 	timeout: 5000,
 	watch: {
@@ -59,6 +60,9 @@ const Shotter = {
 		else this.file = "lines/goblet.json"
 
 		this.connectSocket()
+		setInterval(()=>{
+         		this.now = Date.now()
+		}, 1000)
 	},
 	methods: {
 		connectSocket(){
@@ -98,7 +102,7 @@ const Shotter = {
 	},
 	computed: {
 		socketAge : function(){
-			return Date.now() - this.playstate.issuedAt;
+			return this.now - this.playstate.issuedAt;
 		},
 		players : function(){
 			return this.playersText.split(/\r?\n/)
