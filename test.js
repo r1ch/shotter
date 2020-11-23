@@ -7,7 +7,9 @@ const wss = new WebSocket.Server({ port : 8080 });
 
 const broadcast = ()=>{
 	wss.clients.forEach(sendJson({
-		position: (BROADCAST_POSITION+=BROADCAST_INTERVAL/1000)
+		position: (BROADCAST_POSITION+=BROADCAST_INTERVAL/1000),
+		paused: false,
+		issuedAt: Date.now()
 	}),BROADCAST_INTERVAL)
 }
 
