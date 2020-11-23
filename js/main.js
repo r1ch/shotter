@@ -57,16 +57,14 @@ const Shotter = {
 		},
 		eventHandler(event){
 			if(event.data){
-				let json = {}
 				try{
-					json = JSON.parse(event.data)
+					let json = JSON.parse(event.data)
+					json.position = json.position || 0
+					json.position *= 1000 //expect milliseconds
+					this.playstate = json
 				} catch (e) {
 					console.error(`Dropped: ${JSON.stringify(event.data)}`)
 				}
-				if(json.position){
-					json.position *= 1000;
-				}
-				this.playstate = json
 			}
 		},
 		characterForPlayer(player,line = this.currentLine){
