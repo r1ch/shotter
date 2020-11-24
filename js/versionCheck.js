@@ -7,4 +7,4 @@ const checkVersion = () => {
   .catch(error=>console.error)
 }
 
-setInterval(checkVersion,1000)
+//setInterval(checkVersion,1000)
