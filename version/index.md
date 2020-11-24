@@ -1,1 +1,1 @@
-{{github.revision}}
+{{site.github.build_revision}}
