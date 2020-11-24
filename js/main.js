@@ -220,6 +220,9 @@ ShotterApp.component('recent-line', {
 			return entry.player
 		}
 	},
+    created: function() {
+        console.log( this.title )
+    },
   	computed: {
 		isFresh(){
 			return this.line.timeEpoch.to - this.position > -5000
