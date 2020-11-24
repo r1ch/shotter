@@ -66,6 +66,10 @@ const Shotter = {
 		setInterval(()=>{
          		this.now = Date.now()
 		}, 1000)
+        
+        Notification.requestPermission().then(function(result) {
+            console.log(result);
+        });
 	},
 	methods: {
 		connectSocket(){
@@ -221,7 +225,7 @@ ShotterApp.component('recent-line', {
 		}
 	},
     created: function() {
-        console.log( this.title )
+        var notification = new Notification( this.title )
     },
   	computed: {
 		isFresh(){
