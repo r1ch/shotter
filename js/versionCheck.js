@@ -1,5 +1,5 @@
 const checkVersion = () => axios
-.get(`version?${Date.now()}`)
+.get(`${location.href}version?${Date.now()}`)
 .then(({data})=>{
   if(data.trim() != revision) location.reload();
 })
