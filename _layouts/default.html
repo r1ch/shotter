@@ -16,7 +16,7 @@
                         environment = "{{jekyll.environment}}";
                         config = {
                                 socketString: environment === 'development' ? 'ws://localhost:8080' : 'wss://sockets.bradi.sh:8443',
-                                versionPath: environment === 'development' ? 'http://localhost/shotter/version' : 'https://bradi.sh/shotter/version'
+                                checkFrequency: 1000
                         }
                 </script>
         </head>
