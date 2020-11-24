@@ -1,8 +1,6 @@
 const checkVersion = () => {
-   let versionPath = `${location.href}version?${Date.now()}`
-   console.log(versionPath)
    axios
-  .get(versionPath)
+  .get(config.versionPath)
   .then(({data})=>{
     if(data.trim() != revision) location.reload();
   })
