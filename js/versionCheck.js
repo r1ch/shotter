@@ -1,6 +1,6 @@
 const checkVersion = () => {
    axios
-  .get(config.versionPath)
+  .get(`${config.versionPath}?${Date.now()}`)
   .then(({data})=>{
     if(data.trim() != revision) location.reload();
   })
