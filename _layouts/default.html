@@ -13,8 +13,9 @@
                 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
                 <script src="js/versionCheck.js?{{site.github.build_revision}}"></script>
                 <script type = 'text/javascript'>
+                        environment = "{{jekyll.environment}}";
                         config = {
-                                socketString: '{{jekyll.environment}}' === 'development' ? 'ws://localhost:8080' : 'wss://sockets.bradi.sh:8443'
+                                socketString: environment === 'development' ? 'ws://localhost:8080' : 'wss://sockets.bradi.sh:8443'
                         }
                 </script>
         </head>
