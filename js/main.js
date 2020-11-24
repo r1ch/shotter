@@ -225,16 +225,23 @@ ShotterApp.component('recent-line', {
 		}
 	},
     created: function() {
-        var notification = new Notification( this.title )
+        const notificationTitle = this.title;
+        let characters = Object.keys(this.line.tokens)
+        const playerList = characters.map( this.playerForCharacter )
+        
+        const options = {
+            body: playerList.filter(function(val) { return val !== null; }).join( ", " )
+        }
+        var notification = new Notification( notificationTitle, options )
     },
   	computed: {
 		isFresh(){
 			return this.line.timeEpoch.to - this.position > -5000
 		},
-    		title(){
-      			let characters = Object.keys(this.line.tokens)
-      			return characters.length === 1 ? characters[0] : "Multiple"
-    		},
+        title(){
+            let characters = Object.keys(this.line.tokens)
+            return characters.length === 1 ? characters[0] : "Multiple"
+        },
 		inPlayTokens(){
 			let characters = this.line.playerMap.map(entry=>entry.character)
 			return Object.keys(this.line.tokens) //get all the mentions in the line
