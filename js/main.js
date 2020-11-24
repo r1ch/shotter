@@ -246,9 +246,9 @@ ShotterApp.component('recent-line', {
 			<i class="fas fa-glass-cheers"></i> <span class="badge badge-pill badge-warning" v-if="count.local>1">{{count.local}}</span> {{playerForCharacter(character)}}
 		  </span>
 		</h6>
-		<p class="card-text" >
-		    {{ line.speech.join("&nbsp;") }}
-		</p>
+		<div class="card-text" v-for="(partial,index) in line.speech" :key="index">
+		    {{partial}}
+		</div>
 		<div class="card-text" v-if="line.isSwitch">
 		  <h6><i class="fas fa-redo"></i> Switch</h6>
 		  <span v-for = "entry in line.playerMap" :key="entry.player">
