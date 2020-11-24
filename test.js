@@ -9,7 +9,8 @@ const broadcast = ()=>{
 	wss.clients.forEach(sendJson({
 		position: (BROADCAST_POSITION+=BROADCAST_INTERVAL/1000),
 		paused: false,
-		issuedAt: Date.now()
+		issuedAt: Date.now(),
+		setBy: "localStub"
 	}),BROADCAST_INTERVAL)
 }
 

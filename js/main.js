@@ -145,6 +145,8 @@ const Shotter = {
 					class = "col-12"
 					:position = "playstate.position"
 					:paused = "playstate.paused"
+					:setBy = "playstate.setBy"
+					:socketAge = "socketAge"
 				></film-state>
 			</div>
 			<div class = "row">
@@ -175,7 +177,7 @@ const ShotterApp = Vue.createApp(Shotter)
 
 ShotterApp.component('film-state',{
 	data: ()=>({}),
-	props: ["position","paused"],
+	props: ["position","paused","setBy","socketAge"],
 	computed : {
 		timeString(){
 			let seconds = Math.floor((this.position / 1000) % 60);
@@ -185,7 +187,11 @@ ShotterApp.component('film-state',{
 		}
 	},
 	template: `
-		<h2>{{timeString}} <small v-if = "paused">(Paused)</small></h2>
+			<h2 :class="{'text-danger':socketAge>2500}">
+				{{timeString}} 
+				<small class="text-muted">{{paused ? "paused " : ""}}</small>
+				<div style="font-size:12px">{{setBy}}</div>
+			</h2>
 		`
 })
 
