@@ -1,9 +1,5 @@
 const checkVersion = () => {
-   axios.request({
-      method: "get",
-      baseUrl: location.href,
-      url: "version"
-   })
+   axios.get(`version/index.html?${Date.now()}`)
   .then(({data})=>{
     console.log(data)
     if(data.trim() != revision) location.reload();
@@ -11,4 +7,4 @@ const checkVersion = () => {
   .catch(error=>console.error)
 }
 
-//setInterval(checkVersion,1000)
+setInterval(checkVersion,config.checkFrequency)
