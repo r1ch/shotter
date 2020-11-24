@@ -11,13 +11,7 @@
                 <script src="https://kit.fontawesome.com/b2603ff2ae.js" crossorigin="anonymous"></script>
                 <script src="https://unpkg.com/vue@next"></script>
                 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-                <script type = 'text/javascript'>
-                        environment = "{{jekyll.environment}}";
-                        config = {
-                                socketString: environment === 'development' ? 'ws://localhost:8080' : 'wss://sockets.bradi.sh:8443',
-                                checkFrequency: 1000
-                        }
-                </script>
+                <script src="js/config.js{{site.github.build_revision}}"></script>
                 <script src="js/versionCheck.js?{{site.github.build_revision}}"></script>
         </head>
         <body>{{content}}</body>
