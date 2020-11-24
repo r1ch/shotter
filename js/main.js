@@ -66,6 +66,10 @@ const Shotter = {
 		setInterval(()=>{
          		this.now = Date.now()
 		}, 1000)
+        
+        Notification.requestPermission().then(function(result) {
+            console.log(result);
+        });
 	},
 	methods: {
 		connectSocket(){
@@ -220,6 +224,17 @@ ShotterApp.component('recent-line', {
 			return entry.player
 		}
 	},
+    created: function() {
+        const notificationTitle = this.title;
+        
+        let characters = Object.keys(this.line.tokens)
+        const playerList = characters.map( this.playerForCharacter ).filter(function(val) { return val !== null; }).join( ", " ) 
+        
+        const options = {
+            body: playerList + "\n" + this.line.speech.join("\n")
+        }
+        var notification = new Notification( notificationTitle, options )
+    },
   	computed: {
 		isFresh(){
 			return this.line.timeEpoch.to - this.position > -5000
