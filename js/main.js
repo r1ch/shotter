@@ -220,14 +220,14 @@ ShotterApp.component('recent-line', {
 			return entry.player
 		}
 	},
+	created: function(){
+		console.log("Hello")
+	},
   	computed: {
-		isFresh(){
-			return this.line.timeEpoch.to - this.position > -5000
+		title(){
+			let characters = Object.keys(this.line.tokens)
+			return characters.length === 1 ? characters[0] : "Multiple"
 		},
-    		title(){
-      			let characters = Object.keys(this.line.tokens)
-      			return characters.length === 1 ? characters[0] : "Multiple"
-    		},
 		inPlayTokens(){
 			let characters = this.line.playerMap.map(entry=>entry.character)
 			return Object.keys(this.line.tokens) //get all the mentions in the line
