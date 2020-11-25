@@ -67,7 +67,7 @@ const Shotter = {
          		this.now = Date.now()
 		}, 1000)
         
-		Notification && Notification.requestPermission()
+		//Notification && Notification.requestPermission()
 
 	},
 	methods: {
@@ -236,7 +236,7 @@ ShotterApp.component('recent-line', {
         const options = {
 			body: [playerList, ... this.line.speech].join("\n")
         }
-        Notification && new Notification( notificationTitle, options )
+        //Notification && new Notification( notificationTitle, options )
     },
   	computed: {
 		isFresh(){
