@@ -111,7 +111,8 @@ const Shotter = {
 			return this.playersText.split(/\r?\n/)
 		},
 		currentLine : function(){
-			let lineIndex = this.lines.findIndex(line=>line.timeEpoch.from >= this.playstate.position)
+			let averageEpoch = line => 0.5*(line.timeEpoch.to+line.timeEpoch.from)
+			let lineIndex = this.lines.findIndex(line=> averageEpoch(line) >= this.playstate.position)
 			//This finds the next line, so really we need to find the previous one, and account
 			//For end effects
 			if (lineIndex != 0) {
