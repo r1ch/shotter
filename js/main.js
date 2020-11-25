@@ -226,14 +226,14 @@ ShotterApp.component('recent-line', {
     created: function() {
 		const notificationTitle = this.title;
 		
-        const characters = Object.keys(this.line.tokens)
+		const characters = Object.keys(this.line.tokens)
 		const playerList = characters
 			.map(this.playerForCharacter)
 			.filter(val=>val!==null)
 			.join(", ") 
         
         const options = {
-			body: `${playerList}\n${this.line.speech.join("\n")}`
+			body: [playerList, ... this.line.speech].join("\n")
         }
         new Notification( notificationTitle, options )
     },
