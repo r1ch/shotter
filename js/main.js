@@ -67,7 +67,7 @@ const Shotter = {
          		this.now = Date.now()
 		}, 1000)
         
-		Notification && Notification.requestPermission().then(console.log);
+		Notification && Notification.requestPermission()
 
 	},
 	methods: {
