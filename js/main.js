@@ -16,7 +16,11 @@ const Shotter = {
 	watch: {
 		file: function(){
 			axios.get(this.file)
-			.then(({data})=>this.lines=data)
+			.then(({data})=>{
+				if(data){
+					if(data.lines) this.lines=data.lines
+				}
+			})
 			.catch(console.error)
 		},
 		socketAge: function(){
