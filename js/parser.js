@@ -4,16 +4,16 @@ const Parser = {
 		raw: "",
 		error: false,
 		searchesText : JSON.stringify([
-			    {match: "Ron",                          name: "Ron",          	certain: true,  switch: false},
-			    {match: "(?<!(Ron |Ronald ))Weasley",   name: "Ron",          	certain: false, switch: false},
-			    {match: "Harry",                        name: "Harry",        	certain: true,  switch: false},
-			    {match: "(?<!Harry )Potter",            name: "Harry",        	certain: false, switch: false},
-			    {match: "Hermione",                     name: "Hermione",     	certain: true,  switch: false},
-			    {match: "(?<!Hermione )Grainger",       name: "Hermione",		certain: true,  switch: false},
-				{match: "Albus",						name: "Dumbledore",		certain: true,   switch: false},
-				{match: "(?<!Albus )Dumbledore",		name: "Dumbledore",		certain: true,   switch: false},
-			    {match: "Voldemort",                    name: "Voldemort",      certain: true,  switch: true}
-			])
+			{match: "Ron",                          name: "Ron",          	switch: false},
+			{match: "(?<!(Ron |Ronald ))Weasley",   name: "Ron",          	switch: false},
+			{match: "Harry",                        name: "Harry",        	switch: false},
+			{match: "(?<!Harry )Potter",            name: "Harry",        	switch: false},
+			{match: "Hermione",                     name: "Hermione",     	switch: false},
+			{match: "(?<!Hermione )Grainger",       name: "Hermione",		switch: false},
+			{match: "Albus",						name: "Dumbledore",		switch: false},
+			{match: "(?<!Albus )Dumbledore",		name: "Dumbledore",		switch: false},
+			{match: "Voldemort",                    name: "Voldemort",      switch: true}
+		])
 	}),
 	watch: {
 		path: function(){
@@ -29,7 +29,7 @@ const Parser = {
 	computed: {
 		output(){
 			return {
-				key: this.processedLines.filter(line=>line.tokens)
+				lines : this.processedLines.filter(line=>line.tokens)
 			}
 		},
 		searches(){
@@ -129,7 +129,7 @@ const Parser = {
 		<div class="panel panel-error" v-if="error">
 			  <div class="panel-body">{{error}}</div>
 		</div>
-		{{output}}
+			{{output}}
 		</div>
 	`
 }
