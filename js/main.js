@@ -150,7 +150,7 @@ const Shotter = {
 		}
 	},
 	template: `
-		<div class = "container">
+		<div class = "container" v-on:drink="sendEvent">
 			<div class = "row">
 				<film-state 
 					class = "col-12"
