@@ -75,6 +75,9 @@ const Shotter = {
 
 	},
 	methods: {
+		sendEvent(event){
+			this.socket.sendMessage(event);
+		},
 		connectSocket(){
 			this.socket = new WebSocket(config.socketString)
 			this.socket.addEventListener("message",this.eventHandler)
@@ -236,11 +239,12 @@ ShotterApp.component('recent-line', {
 			.map(this.playerForCharacter)
 			.filter(val=>val!==null)
 			.join(", ") 
-        
-        const options = {
-			body: [playerList, ... this.line.speech].join("\n")
-        }
-        //Notification && new Notification( notificationTitle, options )
+		
+        	this.$emit('drink',playerList)
+		const options = {
+				body: [playerList, ... this.line.speech].join("\n")
+		}
+        	//Notification && new Notification( notificationTitle, options )
     },
   	computed: {
 		isFresh(){
