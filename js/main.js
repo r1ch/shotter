@@ -75,7 +75,7 @@ const Shotter = {
 
 	},
 	methods: {
-		sendEvent(event){
+		drink(event){
 			this.socket.sendMessage(event);
 		},
 		connectSocket(){
@@ -150,7 +150,7 @@ const Shotter = {
 		}
 	},
 	template: `
-		<div class = "container" v-on:drink="sendEvent">
+		<div class = "container">
 			<div class = "row">
 				<film-state 
 					class = "col-12"
@@ -174,7 +174,7 @@ const Shotter = {
 				</div>
 				<div class = "col-8">
 					<h6>Imbibe</h6>
-					<recent-line v-for = "line in recentLines" :key = "line.lineNumber"
+					<recent-line v-on:drink="drink" v-for = "line in recentLines" :key = "line.lineNumber"
 							:line="line"
 							:position="playstate.position"
 					></recent-line>
