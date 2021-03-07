@@ -244,7 +244,7 @@ ShotterApp.component('recent-line', {
 			.filter(val=>val!==null)
 			.join(", ") 
 		
-        	this.$emit('drink',playerList)
+        	if(playerList) this.$emit('drink',playerList)
 		const options = {
 				body: [playerList, ... this.line.speech].join("\n")
 		}
