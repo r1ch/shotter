@@ -76,7 +76,11 @@ const Shotter = {
 	},
 	methods: {
 		drink(event){
-			this.socket.sendMessage(event);
+			try{
+				this.socket.send(event);
+			} catch(e){
+				console.error(e)
+			}
 		},
 		connectSocket(){
 			this.socket = new WebSocket(config.socketString)
