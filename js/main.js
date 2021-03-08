@@ -5,7 +5,6 @@ const Shotter = {
 			paused: true,
 			issuedAt: Date.now()
 		},
-		clockSkew:0,
 		playersText: ["Player 1", "Player 2"].join("\n"),
 		characters: ["Harry","Ron","Hermione"],
 		overflow: "Hogwarts Students",
@@ -28,8 +27,7 @@ const Shotter = {
 			if(Math.abs(this.socketAge) > this.$options.timeout){
 				console.log(`Reconnecting stale socket, ${this.socketAge/1000} seconds since last message, skew: ${this.clockSkew}`)
 				// appears the socket has died?
-				//Sometimes their clock is fucked:
-				this.clockSkew = this.socketAge;
+				//Sometimes their clock is fucked
 				
 				// reset the timeout
 				this.playstate.issuedAt = Date.now()
@@ -123,7 +121,7 @@ const Shotter = {
 	},
 	computed: {
 		socketAge : function(){
-			return this.now - this.playstate.issuedAt + this.clockSkew;
+			return this.now - this.playstate.issuedAt
 		},
 		players : function(){
 			return this.playersText.split(/\r?\n/)
