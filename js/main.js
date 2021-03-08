@@ -123,7 +123,7 @@ const Shotter = {
 	},
 	computed: {
 		socketAge : function(){
-			return this.now - this.playstate.issuedAt - this.clockSkew;
+			return this.now - this.playstate.issuedAt + this.clockSkew;
 		},
 		players : function(){
 			return this.playersText.split(/\r?\n/)
