@@ -244,7 +244,13 @@ ShotterApp.component('recent-line', {
 			.filter(val=>val!==null)
 			.join(", ") 
 		
-        	if(playerList) this.$emit('drink',playerList)
+        	if(playerList || this.line.isSwitch){ 
+			this.$emit('drink',JSON.stringify({
+				time: this.line.timeEpoch.from,
+				playerList: playerList || "Switch"
+			}))
+		}
+	    
 		const options = {
 				body: [playerList, ... this.line.speech].join("\n")
 		}
