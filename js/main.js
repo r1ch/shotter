@@ -10,7 +10,8 @@ const Shotter = {
 		overflow: "Hogwarts Students",
 		file: "",
 		lines: [],
-		now: Date.now()
+		now: Date.now(),
+		lastMessageReceived: Date.now()
 	}),
 	timeout: 5000,
 	watch: {
@@ -24,7 +25,7 @@ const Shotter = {
 			.catch(console.error)
 		},
 		socketAge: function(){
-			if(Math.abs(this.socketAge) > this.$options.timeout){
+			if(this.socketAge > this.$options.timeout){
 				console.log(`Reconnecting stale socket, ${this.socketAge/1000} seconds since last message, skew: ${this.clockSkew}`)
 				// appears the socket has died?
 				//Sometimes their clock is fucked
@@ -95,6 +96,9 @@ const Shotter = {
 					json.position = json.position || 0
 					json.position *= 1000 //expect milliseconds
 					this.playstate = json
+					
+					this.lastMessageReceived = Date.now()
+					
 				} catch (e) {
 					console.error(`Dropped: ${JSON.stringify(event.data)}`)
 				}
@@ -121,7 +125,7 @@ const Shotter = {
 	},
 	computed: {
 		socketAge : function(){
-			return this.now - this.playstate.issuedAt
+			return this.now - this.lastMessageReceived
 		},
 		players : function(){
 			return this.playersText.split(/\r?\n/)
