@@ -151,8 +151,9 @@ const Shotter = {
 			let lastFive = []
 			for(let offset=linesPicked=0; linesPicked < 5 || offset > 10; offset++){
 				console.log(`O: ${offset}, LP: {linesPicked}`)
-				if(this.currentLine.lineIndex - offset < 0) break; //don't go before the first line
-				let candidate = this.lines[this.currentLine.lineIndex]
+				let candidateIndex = this.currentLine.lineIndex - offset 
+				if(candidateIndex < 0) break; //don't go before the first line
+				let candidate = this.lines[candidateIndex]
 				if(candidate.isSwitch || this.playerMap(candidate).length > 0){
 					lastFive.unshift({
 						...candidate,
