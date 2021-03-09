@@ -105,7 +105,7 @@ const Shotter = {
 		},
 		lineIsRelevant(line = this.currentLine){
 			//Relevant if switch or a character is mapped
-			if line.isSwitch return true
+			if(line.isSwitch) return true
 			let charactersInPlay = this.playerMap(line).map(entry=>entry.character)
 			return line.tokens.some(token=>charactersInPlay.includes(token))
 		},
