@@ -103,6 +103,12 @@ const Shotter = {
 				}
 			}
 		},
+		lineIsRelevant(line = this.currentLine){
+			//Relevant if switch or a character is mapped
+			if line.isSwitch return true
+			let charactersInPlay = this.playerMap(line).map(entry=>entry.character)
+			return line.tokens.some(token=>charactersInPlay.includes(token))
+		},
 		characterForPlayer(player,line = this.currentLine){
 			let playerIndex = this.players.indexOf(player)
 			let len = this.paddedCharacters.length
@@ -153,8 +159,7 @@ const Shotter = {
 				let candidateIndex = this.currentLine.lineIndex - offset 
 				if(candidateIndex < 0) break; //don't go before the first line
 				let candidate = this.lines[candidateIndex]
-				if(candidate.isSwitch || this.playerMap(candidate).length > 0){
-					console.log(this.playerMap(candidate))
+				if(this.lineIsRelevant(candidate)){
 					lastFive.push({
 						...candidate,
 						playerMap:this.playerMap(candidate)
