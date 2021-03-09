@@ -149,7 +149,7 @@ const Shotter = {
 			if(this.currentLine.lineIndex==-1) return []
 			//don't generate lines for unplayed characters
 			let lastFive = []
-			for(let offset = linesPicked=0; linesPicked < 5; offset++){
+			for(let offset=linesPicked=0; linesPicked < 5; offset++){
 				if(this.currentLine.lineIndex - offset < 0) break; //don't go before the first line
 				let candidate = this.lines[this.currentLine.lineIndex]
 				if(!candidate.isSwitch && this.playerMap(candidate).length == 0){
