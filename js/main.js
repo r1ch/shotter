@@ -155,7 +155,7 @@ const Shotter = {
 				let candidate = this.lines[candidateIndex]
 				if(candidate.isSwitch || this.playerMap(candidate).length > 0){
 					console.log(this.playerMap(candidate))
-					lastFive.unshift({
+					lastFive.push({
 						...candidate,
 						playerMap:this.playerMap(candidate)
 					})
