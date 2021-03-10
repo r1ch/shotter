@@ -175,7 +175,7 @@ const Shotter = {
 		playGraph: function(){
 			let playerCounts = {}
 			this.players.forEach(player=>playerCounts[player]=0)
-			this.lines.map(line=>{
+			return this.lines.map(line=>{
 				let playerMap = this.playerMap(line)
 				return {
 					epoch: line.timeEpoch,
