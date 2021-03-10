@@ -421,6 +421,7 @@ ShotterApp.component('drink-graph', {
 				.call(this.yAxis);
 		},
 		drawPosition(){
+			this.setUp()
 			this.svg.selectAll('.position')
 				.data([this.position])
 				.join(enter=>enter
@@ -431,7 +432,7 @@ ShotterApp.component('drink-graph', {
 				      .attr('y',0)
 				      .attr('class','position')
 				 )
-				.attr('x',this.xScale(new Date(this.position)))
+				.attr('x',d=>this.xScale(new Date(d)))
 			console.log("hi",this.position)
 		},
 		drawGraph(){
