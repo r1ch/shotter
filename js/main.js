@@ -391,7 +391,10 @@ ShotterApp.component('drink-graph', {
 	watch:{
 		"graph": function(){
 			this.drawGraph()
-		}
+		},
+		"position": function(){
+			this.drawPosition()
+		},
 	},
 	methods: {
 		setUp() {
@@ -399,7 +402,7 @@ ShotterApp.component('drink-graph', {
 				.domain([this.graph[0].time,this.graph[this.graph.length-1].time])
 				.range([0, this.width])
 
-			this.xAxis = d3.axisBottom(xScale)
+			this.xAxis = d3.axisBottom(this.xScale)
 				.ticks(d3.timeMinute.every(15),"%-Hh%Mm");
 
 			this.svg.select(".x")
@@ -412,10 +415,22 @@ ShotterApp.component('drink-graph', {
 				])
 				.range([this.height,0])
 			
-			this.yAxis = d3.axisLeft(yScale)
+			this.yAxis = d3.axisLeft(this.yScale)
 			
 			this.svg.select(".y")
 				.call(this.yAxis);
+		},
+		drawPosition(){
+			this.svg.selectAll('.position')
+				.data([this.position])
+				.join(enter=>enter
+				      .append('rect')
+				      .attr('width',10)
+				      .attr('height',this.height)
+				      .attr('fill','rgba(255,255,255,0.5)')
+				      .attr('y',0)
+				 )
+				.attr('x',this.xScale(new Date(this.position)))
 		},
 		drawGraph(){
 			this.setUp()
