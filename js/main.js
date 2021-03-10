@@ -171,10 +171,30 @@ const Shotter = {
 		},
 		currentPlayerMap: function(){
 			return this.playerMap()
+		},
+		playGraph: function(){
+			let playerCounts = {}
+			this.players.forEach(player=>playerCounts[player]=0)
+			this.lines.map(line=>{
+				let playerMap = this.playerMap(line)
+				return {
+					epoch: line.timeEpoch,
+					score: [
+						... Object.keys(line.tokens).map(character=>{
+							let player = playerMap.find(entry=>entry.character==character)
+							player && playerCounts[player] && playerCounts[player]++
+							return {
+								player : playerCounts[player]
+							}
+						})
+					]
+				}
+			})
 		}
 	},
 	template: `
 		<div class = "container">
+			{{playGraph}}
 			<div class = "row">
 				<film-state 
 					class = "col-12"
