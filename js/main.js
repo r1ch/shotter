@@ -215,6 +215,11 @@ const Shotter = {
 					<textarea v-model="playersText"></textarea>
 					<h6>Spares</h6>
 					<input type = "text" v-model="overflow"/>
+					<drink-graph 
+						:graph = "graph"
+						:colourScale = "colourScale"
+						:position = "playstate.position"
+					></drink-graph>
 				</div>
 				<div class = "col-8">
 					<h6>Imbibe</h6>
@@ -222,12 +227,6 @@ const Shotter = {
 							:line="line"
 					></recent-line>
 				</div>
-			</div>
-			<div class = "row">
-				<drink-graph 
-					:graph = "graph"
-					:colourScale = "colourScale"
-				></drink-graph>
 			</div>
 		</div>
 	`
@@ -391,39 +390,42 @@ ShotterApp.component('drink-graph', {
 	},
 	watch:{
 		"graph": function(){
-			this.draw()
+			this.drawGraph()
 		}
 	},
 	methods: {
-		draw() {
-			let xScale = d3.scaleUtc()
+		setUp() {
+			this.xScale = d3.scaleUtc()
 				.domain([this.graph[0].time,this.graph[this.graph.length-1].time])
 				.range([0, this.width])
 
-			let xAxis = d3.axisBottom(xScale)
+			this.xAxis = d3.axisBottom(xScale)
 				.ticks(d3.timeMinute.every(15),"%-Hh%Mm");
 
 			this.svg.select(".x")
-				.call(xAxis);
+				.call(this.xAxis);
 			
-			let yScale = d3.scaleLinear()
+			this.yScale = d3.scaleLinear()
 				.domain([
 					0,
 					d3.max(Object.values(this.graph[this.graph.length-1].scores))
 				])
 				.range([this.height,0])
 			
-			let yAxis = d3.axisLeft(yScale)
+			this.yAxis = d3.axisLeft(yScale)
 			
 			this.svg.select(".y")
-				.call(yAxis);
+				.call(this.yAxis);
+		},
+		drawGraph(){
+			this.setUp()
 			
 			let timeSeries = Object.keys(this.graph[0].scores)
 			.map(key=>this.graph.reduce(
 				(acc,current)=>{
 					acc.push({
 						name: key,
-			    			at: xScale(current.time),
+			    			at: this.xScale(current.time),
 			    			total: current.scores[key]
 					}); 
 					return acc
