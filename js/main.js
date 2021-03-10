@@ -215,11 +215,6 @@ const Shotter = {
 					<textarea v-model="playersText"></textarea>
 					<h6>Spares</h6>
 					<input type = "text" v-model="overflow"/>
-					<drink-graph 
-						:graph = "graph"
-						:colourScale = "colourScale"
-						:position = "playstate.position"
-					></drink-graph>
 				</div>
 				<div class = "col-8">
 					<h6>Imbibe</h6>
@@ -227,6 +222,13 @@ const Shotter = {
 							:line="line"
 					></recent-line>
 				</div>
+			</div>
+			<div class = "row">
+				<drink-graph 
+					:graph = "graph"
+					:colourScale = "colourScale"
+					:position = "playstate.position"
+				></drink-graph>
 			</div>
 		</div>
 	`
