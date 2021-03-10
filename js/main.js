@@ -177,19 +177,13 @@ const Shotter = {
 			this.players.forEach(player=>playerCounts[player]=0)
 			return this.lines.map(line=>{
 				let playerMap = this.playerMap(line)
-				console.log(Object.keys(line.tokens))
+				Object.keys(line.tokens).forEach(token=>{
+					let entry = playerMap.find(entry=>entry.character==token)
+					entry && entry.player && playerCounts[entry.player] && playerCounts[entry.player]++
+				})
 				return {
 					epoch: line.timeEpoch,
-					score: [
-						... Object.keys(line.tokens).map(character=>{
-							let entry = playerMap.find(entry=>entry.character==character)
-							if(entry && entry.player && playerCounts[entry.player]){
-								return {
-									player : ++playerCounts[entry.player]
-								}
-							}
-						})
-					]
+					score: [...playerCounts]
 				}
 			})
 		}
