@@ -172,7 +172,7 @@ const Shotter = {
 		currentPlayerMap: function(){
 			return this.playerMap()
 		},
-		playGraph: function(){
+		graph: function(){
 			let playerCounts = {}
 			this.players.forEach(player=>playerCounts[player]=0)
 			return this.lines.map(line=>{
@@ -183,14 +183,13 @@ const Shotter = {
 				})
 				return {
 					epoch: line.timeEpoch,
-					score: Object.assign({},playerCounts)
+					scores: Object.assign({},playerCounts)
 				}
 			})
 		}
 	},
 	template: `
 		<div class = "container">
-			{{playGraph}}
 			<div class = "row">
 				<film-state 
 					class = "col-12"
@@ -218,6 +217,11 @@ const Shotter = {
 							:line="line"
 					></recent-line>
 				</div>
+			</div>
+			<div class = "row">
+				<drink-graph 
+					:graph="graph"
+				></drink-graph>
 			</div>
 		</div>
 	`
@@ -335,6 +339,103 @@ ShotterApp.component('recent-line', {
 	      </div>
 	    </div>
 	`
+})
+
+ShotterApp.component('graph', {
+	props:['graph'],
+	data: function() {
+		let margin = {
+			top: 10,
+			right: 25,
+			middle : 25,
+			bottom: 10,
+			left: 25
+		};
+		let fullWidth = 600
+		let ticks = fullWidth/90
+		let fullHeight = 600
+		let barHeight = 20
+		let width = fullWidth - margin.left - margin.right
+		let height = fullHeight - margin.top - margin.bottom
+		return {
+			lines:[],
+			margin: margin,
+			width: width,
+			height: height,
+			fullWidth : fullWidth,
+			fullHeight : fullHeight,
+			ticks:ticks
+		}
+	},
+	template: `
+		<div id = "d3" class = "col-12 svgHolder"></div>
+    	`,
+	mounted : function(){
+		this.svg = d3.select("#d3")
+			.append("svg")
+			.attr('width',this.fullWidth)
+			.attr('height',this.fullHeight)
+			.append("g")
+			.attr("transform", `translate(${this.margin.left},${this.margin.top})`)
+		
+		this.svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", `translate(0,${this.fullHeight})`)
+		
+		this.svg.append("g")
+			.attr("class", "y axis")
+			.attr("transform", `translate(0,0)`)
+		this.draw()
+	},
+	methods: {
+		draw() {		
+			let xScale = d3.scaleTime()
+				.domain([this.graph[0].epoch.from,this.graph[this.graph.length-1].epoch.from])
+				.range([0, this.width])
+
+			let xAxis = d3.axisBottom(xScale)
+				.ticks(this.ticks)
+
+			this.svg.select(".x")
+				.call(xAxis);
+			
+			let yScale = d3.scaleLinear()
+				.domain([
+					0,
+					d3.max(Object.values(this.graph[this.graph.length-1].scores))
+				])
+				.range([this.height,0])
+			
+			let timeSeries = Object.keys(this.graph[0].scores)
+			.map(key=>timeLines.reduce(
+				(acc,current)=>{
+					acc.push({
+						name:key,
+			    			at:current.epoch.from,
+			    			total: current.scores[key]
+					}); 
+					return acc
+				},[])
+			)
+			
+			let lineGenerator = d3.line()
+    				.x(d=>d.at)
+    				.y(d=>yScale(d.total))
+   				.curve(d3.curveMonotoneX)
+
+			
+			let lines = this.svg.selectAll('.line')
+				.data(timeSeries)
+				.join(enter=>enter.append('path'))
+				.attr("class", d=>`lineOn ${d[0].name}`)
+				.attr("clip-path", d=>`url(#clip-${d[0].name})`)
+				.attr("id", d=>`lineOn-${d[0].name}`)
+				//.attr("stroke", (d,i)=>this.colourScale(d[0].name[0]))
+				.attr("stroke", "red")
+				.attr("d", lineGenerator)
+
+		}
+	}
 })
 
 ShotterApp.mount('#shotter')
