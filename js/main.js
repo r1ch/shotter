@@ -183,7 +183,7 @@ const Shotter = {
 				})
 				return {
 					epoch: line.timeEpoch,
-					score: Objet.assign({},playerCounts)
+					score: Object.assign({},playerCounts)
 				}
 			})
 		}
