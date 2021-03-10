@@ -359,7 +359,6 @@ ShotterApp.component('drink-graph', {
 			left: 25
 		};
 		let fullWidth = 600
-		let ticks = fullWidth/90
 		let fullHeight = 300
 		let width = fullWidth - margin.left - margin.right
 		let height = fullHeight - margin.top - margin.bottom
@@ -368,8 +367,7 @@ ShotterApp.component('drink-graph', {
 			width: width,
 			height: height,
 			fullWidth : fullWidth,
-			fullHeight : fullHeight,
-			ticks:ticks
+			fullHeight : fullHeight
 		}
 	},
 	template: `
@@ -401,7 +399,6 @@ ShotterApp.component('drink-graph', {
 				.range([0, this.width])
 
 			let xAxis = d3.axisBottom(xScale)
-				.ticks(this.ticks)
 
 			this.svg.select(".x")
 				.call(xAxis);
@@ -412,6 +409,8 @@ ShotterApp.component('drink-graph', {
 					d3.max(Object.values(this.graph[this.graph.length-1].scores))
 				])
 				.range([this.height,0])
+			
+			let yAxis = d3.axisLeft(yScale)
 			
 			this.svg.select(".y")
 				.call(yAxis);
