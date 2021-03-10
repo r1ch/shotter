@@ -388,12 +388,14 @@ ShotterApp.component('drink-graph', {
 		this.svg.append("g")
 			.attr("class", "y axis")
 			.attr("transform", `translate(0,0)`)
-		
-		setTimeout(this.draw,1000)
+	},
+	watch:{
+		"graph": function(){
+			this.draw()
+		}
 	},
 	methods: {
 		draw() {
-			console.log(this.graph)
 			let xScale = d3.scaleUtc()
 				.domain([this.graph[0].time,this.graph[this.graph.length-1].time])
 				.range([0, this.width])
