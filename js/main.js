@@ -362,6 +362,7 @@ ShotterApp.component('drink-graph', {
 		let width = fullWidth - margin.left - margin.right
 		let height = fullHeight - margin.top - margin.bottom
 		return {
+			ready: false,
 			margin: margin,
 			width: width,
 			height: height,
@@ -390,12 +391,10 @@ ShotterApp.component('drink-graph', {
 	},
 	watch:{
 		"graph": function(){
-			console.log(this.graph)
 			this.drawGraph()
 		},
 		"position": function(){
-			console.log(this.graph)
-			this.drawPosition()
+			this.ready && this.drawPosition()
 		},
 	},
 	methods: {
@@ -421,9 +420,10 @@ ShotterApp.component('drink-graph', {
 			
 			this.svg.select(".y")
 				.call(this.yAxis);
+			
+			this.ready = true;
 		},
 		drawPosition(){
-			this.setUp()
 			this.svg.selectAll('.position')
 				.data([this.position])
 				.join(enter=>enter
