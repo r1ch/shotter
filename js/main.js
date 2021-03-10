@@ -372,7 +372,7 @@ ShotterApp.component('drink-graph', {
 		}
 	},
 	template: `
-		<div id = "d3" class = "col-12 svgHolder"></div>
+		<div id = "d3" class = "col-12"></div>
     	`,
 	mounted : function(){
 		this.svg = d3.select("#d3")
@@ -395,7 +395,7 @@ ShotterApp.component('drink-graph', {
 	methods: {
 		draw() {
 			console.log(this.graph)
-			let xScale = d3.scaleTime()
+			let xScale = d3.scaleLinear()
 				.domain([this.graph[0].epoch.from,this.graph[this.graph.length-1].epoch.from])
 				.range([0, this.width])
 
