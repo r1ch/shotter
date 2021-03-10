@@ -430,13 +430,13 @@ ShotterApp.component('drink-graph', {
 				.data([this.position])
 				.join(enter=>enter
 				      .append('rect')
-				      .attr('width',1)
+				      .attr('width',10)
 				      .attr('height',this.height)
 				      .attr('fill','rgba(0,0,0,0.5)')
 				      .attr('y',0)
 				      .attr('class','position')
 				 )
-				.attr('x',d=>this.xScale(new Date(d)))
+				.attr('x',d=>5+this.xScale(new Date(d)))
 		},
 		drawGraph(){
 			this.setUp()
@@ -456,7 +456,7 @@ ShotterApp.component('drink-graph', {
 			let lineGenerator = d3.line()
     				.x(d=>d.at)
     				.y(d=>this.yScale(d.total))
-   				//.curve(d3.curveMonotoneX)
+   				.curve(d3.curveMonotoneX)
 
 			
 			let lines = this.svg.selectAll('.line')
