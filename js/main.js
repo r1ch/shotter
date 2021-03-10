@@ -226,7 +226,7 @@ const Shotter = {
 			<div class = "row">
 				<drink-graph 
 					:graph = "graph"
-					:colourScale = "colorScale"
+					:colourScale = "colourScale"
 				></drink-graph>
 			</div>
 		</div>
@@ -348,7 +348,7 @@ ShotterApp.component('recent-line', {
 })
 
 ShotterApp.component('drink-graph', {
-	props:['graph'],
+	props:['graph','colourScale'],
 	data: function() {
 		let margin = {
 			top: 10,
