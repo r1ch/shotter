@@ -183,9 +183,10 @@ const Shotter = {
 					score: [
 						... Object.keys(line.tokens).map(character=>{
 							let entry = playerMap.find(entry=>entry.character==character)
-							entry && entry.player && playerCounts[entry.player] && playerCounts[entry.player]++
-							return {
-								player : playerCounts[entry.player]
+							if(entry && entry.player && playerCounts[entry.player]){
+								return {
+									player : ++playerCounts[entry.player]
+								}
 							}
 						})
 					]
