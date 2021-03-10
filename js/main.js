@@ -180,7 +180,7 @@ const Shotter = {
 				let playerMap = this.playerMap(line)
 				Object.keys(line.tokens).forEach(token=>{
 					let entry = playerMap.find(entry=>entry.character==token)
-					if (entry && entry.player) playerCounts[entry.player]++
+					if (entry && entry.player) playerCounts[entry.player] += line.tokens[token].local
 				})
 				return {
 					epoch: line.timeEpoch,
