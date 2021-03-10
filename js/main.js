@@ -383,7 +383,7 @@ ShotterApp.component('drink-graph', {
 		
 		this.svg.append("g")
 			.attr("class", "x axis")
-			.attr("transform", `translate(0,${this.fullHeight})`)
+			.attr("transform", `translate(0,${this.height})`)
 		
 		this.svg.append("g")
 			.attr("class", "y axis")
