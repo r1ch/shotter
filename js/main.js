@@ -260,11 +260,12 @@ ShotterApp.component('map-entry',{
 	props: ["entry","colourScale"],
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center">
-		<span :style="{color:colourScale(entry.player[0])}">•</span>&nbsp;{{entry.player}}
+			{{entry.player}}
 			<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
 			</span>
+			<span :style="{color:colourScale(entry.player[0])}">•</span>&nbsp;
 		</li>
 		`
 })
@@ -411,6 +412,9 @@ ShotterApp.component('drink-graph', {
 					d3.max(Object.values(this.graph[this.graph.length-1].scores))
 				])
 				.range([this.height,0])
+			
+			this.svg.select(".y")
+				.call(yAxis);
 			
 			let timeSeries = Object.keys(this.graph[0].scores)
 			.map(key=>this.graph.reduce(
