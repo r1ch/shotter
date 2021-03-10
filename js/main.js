@@ -183,7 +183,7 @@ const Shotter = {
 					if (entry && entry.player) playerCounts[entry.player] += line.tokens[token].local
 				})
 				return {
-					epoch: line.timeEpoch,
+					time: new Date(line.timeEpoch.from),
 					scores: Object.assign({},playerCounts)
 				}
 			})
@@ -394,8 +394,8 @@ ShotterApp.component('drink-graph', {
 	methods: {
 		draw() {
 			console.log(this.graph)
-			let xScale = d3.scaleLinear()
-				.domain([this.graph[0].epoch.from,this.graph[this.graph.length-1].epoch.from])
+			let xScale = d3.scaleTime()
+				.domain([this.graph[0].time,this.graph[this.graph.length-1].time])
 				.range([0, this.width])
 
 			let xAxis = d3.axisBottom(xScale)
@@ -420,7 +420,7 @@ ShotterApp.component('drink-graph', {
 				(acc,current)=>{
 					acc.push({
 						name: key,
-			    			at: xScale(current.epoch.from),
+			    			at: xScale(current.time),
 			    			total: current.scores[key]
 					}); 
 					return acc
