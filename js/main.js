@@ -427,6 +427,7 @@ ShotterApp.component('drink-graph', {
 				.join(enter=>enter
 				      .append('rect')
 				      .attr('width',10)
+				      .attr('dx',-5)
 				      .attr('height',this.height)
 				      .attr('fill','rgba(0,0,0,0.5)')
 				      .attr('y',0)
