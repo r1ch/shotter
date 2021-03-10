@@ -374,7 +374,7 @@ ShotterApp.component('drink-graph', {
 		<div id = "d3" class = "col-12"></div>
     	`,
 	mounted : function(){
-		this.timeFormat = d3.timeFormat("%-Ih%M");
+		this.timeFormat = d3.utcFormat("%-I %M")
 		
 		this.svg = d3.select("#d3")
 			.append("svg")
