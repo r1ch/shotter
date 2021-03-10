@@ -182,11 +182,10 @@ const Shotter = {
 					epoch: line.timeEpoch,
 					score: [
 						... Object.keys(line.tokens).map(character=>{
-							let player = playerMap.find(entry=>entry.character==character).player
-							console.log(player,playerCounts)
-							player && playerCounts[player] && playerCounts[player]++
+							let entry = playerMap.find(entry=>entry.character==character)
+							entry && entry.player && playerCounts[entry.player] && playerCounts[entry.player]++
 							return {
-								player : playerCounts[player]
+								player : playerCounts[entry.player]
 							}
 						})
 					]
