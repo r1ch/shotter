@@ -394,7 +394,7 @@ ShotterApp.component('drink-graph', {
 	methods: {
 		draw() {
 			console.log(this.graph)
-			let xScale = d3.scaleTime()
+			let xScale = d3.scaleUtc()
 				.domain([this.graph[0].time,this.graph[this.graph.length-1].time])
 				.range([0, this.width])
 
