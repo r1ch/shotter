@@ -429,8 +429,10 @@ ShotterApp.component('drink-graph', {
 				      .attr('height',this.height)
 				      .attr('fill','rgba(255,255,255,0.5)')
 				      .attr('y',0)
+				      .attr('class','position')
 				 )
 				.attr('x',this.xScale(new Date(this.position)))
+			console.log("hi",this.position)
 		},
 		drawGraph(){
 			this.setUp()
