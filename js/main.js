@@ -390,9 +390,11 @@ ShotterApp.component('drink-graph', {
 	},
 	watch:{
 		"graph": function(){
+			console.log(this.graph)
 			this.drawGraph()
 		},
 		"position": function(){
+			console.log(this.graph)
 			this.drawPosition()
 		},
 	},
