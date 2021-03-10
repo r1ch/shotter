@@ -341,7 +341,7 @@ ShotterApp.component('recent-line', {
 	`
 })
 
-ShotterApp.component('graph', {
+ShotterApp.component('drink-graph', {
 	props:['graph'],
 	data: function() {
 		let margin = {
