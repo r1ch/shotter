@@ -180,7 +180,7 @@ const Shotter = {
 				Object.keys(line.tokens).forEach(token=>{
 					let entry = playerMap.find(entry=>entry.character==token)
 					console.log(entry, playerCounts)
-					if(entry && entry.player && playerCounts[entry.player])
+					if(entry && entry.player && playerCounts[entry.player]){
 						console.log(entry.player, playerCounts)
 						playerCounts[entry.player] = playerCounts[entry.player] + 1 
 						console.log(entry.player, playerCounts)
