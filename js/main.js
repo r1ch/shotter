@@ -355,7 +355,7 @@ ShotterApp.component('drink-graph', {
 			top: 10,
 			right: 25,
 			middle : 25,
-			bottom: 10,
+			bottom: 50,
 			left: 25
 		};
 		let fullWidth = 600
