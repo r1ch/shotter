@@ -437,7 +437,7 @@ ShotterApp.component('drink-graph', {
 				.attr("clip-path", d=>`url(#clip-${d[0].name})`)
 				.attr("id", d=>`lineOn-${d[0].name}`)
 				//.attr("stroke", (d,i)=>this.colourScale(d[0].name[0]))
-				.attr("stroke", "red")
+				.attr("stroke", d=>this.colourScale(d[0].name[0]))
 				.attr("fill","none")
 				.attr("d", lineGenerator)
 
