@@ -399,10 +399,9 @@ ShotterApp.component('drink-graph', {
 			let xScale = d3.scaleUtc()
 				.domain([this.graph[0].time,this.graph[this.graph.length-1].time])
 				.range([0, this.width])
-				.ticks(10)
-				.map(this.timeFormat)
 
 			let xAxis = d3.axisBottom(xScale)
+				.ticks(d3.timeMinute.every(15));
 
 			this.svg.select(".x")
 				.call(xAxis);
