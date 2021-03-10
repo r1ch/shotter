@@ -179,15 +179,11 @@ const Shotter = {
 				let playerMap = this.playerMap(line)
 				Object.keys(line.tokens).forEach(token=>{
 					let entry = playerMap.find(entry=>entry.character==token)
-					if (entry && entry.player){
-						console.log(`B: ${entry.player}, ${playerCounts}`)
-						playerCounts[entry.player] = playerCounts[entry.player] + 1 
-						console.log(`A: ${entry.player}, ${playerCounts}`)
-					}
+					if (entry && entry.player) playerCounts[entry.player]++
 				})
 				return {
 					epoch: line.timeEpoch,
-					score: playerCounts
+					score: Objet.assign({},playerCounts)
 				}
 			})
 		}
