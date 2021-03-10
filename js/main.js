@@ -449,7 +449,7 @@ ShotterApp.component('drink-graph', {
 			
 			let lineGenerator = d3.line()
     				.x(d=>d.at)
-    				.y(d=>yScale(d.total))
+    				.y(d=>this.yScale(d.total))
    				.curve(d3.curveMonotoneX)
 
 			
