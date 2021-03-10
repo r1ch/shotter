@@ -183,7 +183,7 @@ const Shotter = {
 				})
 				return {
 					epoch: line.timeEpoch,
-					score: [...playerCounts]
+					score: playerCounts
 				}
 			})
 		}
