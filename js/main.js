@@ -399,7 +399,7 @@ ShotterApp.component('drink-graph', {
 				.range([0, this.width])
 
 			let xAxis = d3.axisBottom(xScale)
-				.ticks(d3.timeMinute.every(15),"%-I %M");
+				.ticks(d3.timeMinute.every(15),"%-Hh%Mm");
 
 			this.svg.select(".x")
 				.call(xAxis);
