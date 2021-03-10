@@ -374,8 +374,6 @@ ShotterApp.component('drink-graph', {
 		<div id = "d3" class = "col-12"></div>
     	`,
 	mounted : function(){
-		this.timeFormat = d3.utcFormat("%-I %M")
-		
 		this.svg = d3.select("#d3")
 			.append("svg")
 			.attr('width',this.fullWidth)
@@ -401,7 +399,7 @@ ShotterApp.component('drink-graph', {
 				.range([0, this.width])
 
 			let xAxis = d3.axisBottom(xScale)
-				.ticks(d3.timeMinute.every(15));
+				.ticks(d3.timeMinute.every(15),"%-I %M");
 
 			this.svg.select(".x")
 				.call(xAxis);
