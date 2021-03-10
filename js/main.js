@@ -353,12 +353,10 @@ ShotterApp.component('drink-graph', {
 		};
 		let fullWidth = 600
 		let ticks = fullWidth/90
-		let fullHeight = 600
-		let barHeight = 20
+		let fullHeight = 300
 		let width = fullWidth - margin.left - margin.right
 		let height = fullHeight - margin.top - margin.bottom
 		return {
-			lines:[],
 			margin: margin,
 			width: width,
 			height: height,
@@ -434,6 +432,7 @@ ShotterApp.component('drink-graph', {
 				.attr("id", d=>`lineOn-${d[0].name}`)
 				//.attr("stroke", (d,i)=>this.colourScale(d[0].name[0]))
 				.attr("stroke", "red")
+				.attr("fill","none")
 				.attr("d", lineGenerator)
 
 		}
