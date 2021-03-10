@@ -5,6 +5,7 @@ const Shotter = {
 			paused: true,
 			issuedAt: Date.now()
 		},
+		colourScale: d3.scaleOrdinal("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),d3.schemeCategory10),
 		playersText: ["Player 1", "Player 2"].join("\n"),
 		characters: ["Harry","Ron","Hermione"],
 		overflow: "Hogwarts Students",
@@ -203,7 +204,11 @@ const Shotter = {
 				<div class = "col-4">
 					<h6>Who's who?</h6>
 					<ul class = "list-group">
-						<map-entry v-for = "entry in currentPlayerMap" :entry="entry" :key="entry.index"></map-entry>
+						<map-entry v-for = "entry in currentPlayerMap" 
+							:entry="entry" 
+							:key="entry.index"
+							:colourScale = "colourScale"
+						></map-entry>
 					</ul>
 					<hr/>
 					<h6>Player entry</h6>
@@ -251,10 +256,10 @@ ShotterApp.component('film-state',{
 
 ShotterApp.component('map-entry',{
 	data: ()=>({}),
-	props: ["entry"],
+	props: ["entry","colourScale"],
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center">
-		{{entry.player}}
+		<span :style="{color:colourScale(player[0])}">•</span>&nbsp;{{entry.player}}
 			<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
