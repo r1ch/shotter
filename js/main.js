@@ -385,10 +385,12 @@ ShotterApp.component('drink-graph', {
 		this.svg.append("g")
 			.attr("class", "y axis")
 			.attr("transform", `translate(0,0)`)
-		this.draw()
+		
+		setTimeout(this.draw,1000)
 	},
 	methods: {
-		draw() {		
+		draw() {
+			console.log(this.graph)
 			let xScale = d3.scaleTime()
 				.domain([this.graph[0].epoch.from,this.graph[this.graph.length-1].epoch.from])
 				.range([0, this.width])
@@ -407,7 +409,7 @@ ShotterApp.component('drink-graph', {
 				.range([this.height,0])
 			
 			let timeSeries = Object.keys(this.graph[0].scores)
-			.map(key=>timeLines.reduce(
+			.map(key=>this.graph.reduce(
 				(acc,current)=>{
 					acc.push({
 						name:key,
