@@ -412,8 +412,8 @@ ShotterApp.component('drink-graph', {
 			.map(key=>this.graph.reduce(
 				(acc,current)=>{
 					acc.push({
-						name:key,
-			    			at:current.epoch.from,
+						name: key,
+			    			at: xScale(current.epoch.from),
 			    			total: current.scores[key]
 					}); 
 					return acc
