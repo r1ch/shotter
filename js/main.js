@@ -179,6 +179,7 @@ const Shotter = {
 				let playerMap = this.playerMap(line)
 				Object.keys(line.tokens).forEach(token=>{
 					let entry = playerMap.find(entry=>entry.character==token)
+					console.log(entry, playerCounts)
 					entry && entry.player && playerCounts[entry.player] && playerCounts[entry.player]++
 				})
 				return {
@@ -216,7 +217,6 @@ const Shotter = {
 					<h6>Imbibe</h6>
 					<recent-line v-on:drink="drink" v-for = "line in recentLines" :key = "line.lineNumber"
 							:line="line"
-							:position="playstate.position"
 					></recent-line>
 				</div>
 			</div>
@@ -263,7 +263,7 @@ ShotterApp.component('map-entry',{
 
 ShotterApp.component('recent-line', {
 	data: () => ({}),
-	props: ["line","postision"],
+	props: ["line"],
 	methods: {
 		playerForCharacter(character){
 			let entry = this.line.playerMap.find(entry=>entry.character==character)
