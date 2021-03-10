@@ -122,7 +122,7 @@ const Shotter = {
 					return {
 						character:character,
 						player:player,
-						index:`${character}-${player}-${index}`
+						index:`${character}-${player}-${line.lineNumber}-${index}`
 					}
 				}
 			);
@@ -179,11 +179,10 @@ const Shotter = {
 				let playerMap = this.playerMap(line)
 				Object.keys(line.tokens).forEach(token=>{
 					let entry = playerMap.find(entry=>entry.character==token)
-					console.log(entry, playerCounts)
 					if(entry && entry.player && playerCounts[entry.player]){
-						console.log(entry.player, playerCounts)
+						console.log(`B: ${entry.player}, ${playerCounts}`)
 						playerCounts[entry.player] = playerCounts[entry.player] + 1 
-						console.log(entry.player, playerCounts)
+						console.log(`A: ${entry.player}, ${playerCounts}`)
 					}
 				})
 				return {
