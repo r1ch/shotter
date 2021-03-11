@@ -378,8 +378,9 @@ ShotterApp.component('drink-graph', {
 	mounted : function(){
 		this.svg = d3.select("#d3")
 			.append("svg")
-			.attr('width',this.fullWidth)
-			.attr('height',this.fullHeight)
+			.attr("viewBox", `0 0 ${this.fullWidth} ${this.fullHeight}`)
+			//.attr('width',this.fullWidth)
+			//.attr('height',this.fullHeight)
 			.append("g")
 			.attr("transform", `translate(${this.margin.left},${this.margin.top})`)
 		
