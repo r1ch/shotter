@@ -472,7 +472,7 @@ ShotterApp.component('drink-graph', {
 			let switchLabels = this.svg.selectAll('.switchLabel')
 				.data(this.graph.filter(entry=>entry.isSwitch))
 				.join(enter=>enter.append('text'))
-				.attr("class", "switchLabel")
+				.attr("class", "switchLabel fas")
 				.attr("text-anchor", 'middle')
 				.attr("alignment-baseline", 'middle')
 				.attr("font-family", 'FontAwesome')
