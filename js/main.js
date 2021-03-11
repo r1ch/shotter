@@ -260,7 +260,7 @@ ShotterApp.component('map-entry',{
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center" :style="{background:colourScale(entry.player[0])}">
 			{{entry.player}}
-			<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">
+			<span class="badge badge-pill" :class = "{'badge-white': entry.character=='Harry'}">
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
 			</span>
@@ -330,7 +330,7 @@ ShotterApp.component('recent-line', {
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
 		  <span v-for = "(count, character) in inPlayTokens" :key="character" href="#" class="card-link">
-			<i class="fas fa-glass-cheers"></i> <span class="badge badge-pill badge-white" v-if="count.local>1">{{count.local}}</span> {{playerForCharacter(character)}}
+			<i class="fas fa-glass-cheers"></i> <span class="badge badge-pill badge-primary" v-if="count.local>1">{{count.local}}</span> {{playerForCharacter(character)}}
 		  </span>
 		</h6>
 		<div class="card-text" v-for="(partial,index) in line.speech" :key="index">
