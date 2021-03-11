@@ -475,7 +475,7 @@ ShotterApp.component('drink-graph', {
 				.attr("class", "switch")
 				.attr("stroke","none")
 				.attr("fill","red")
-				.attr("cx",d=>xScale(d.time))
+				.attr("cx",d=>this.xScale(d.time))
 				.attr("cy",this.height)
 				.attr("r",1)
 				
