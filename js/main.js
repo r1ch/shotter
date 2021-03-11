@@ -469,7 +469,7 @@ ShotterApp.component('drink-graph', {
 				.attr("fill","none")
 				.attr("d", lineGenerator)
 			
-			let lines = this.svg.selectAll('.switch')
+			let switches = this.svg.selectAll('.switch')
 				.data(this.graph)
 				.join(enter=>enter.append('circle'))
 				.attr("class", "switch")
