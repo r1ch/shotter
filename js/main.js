@@ -473,11 +473,21 @@ ShotterApp.component('drink-graph', {
 				.data(this.graph.filter(entry=>entry.isSwitch))
 				.join(enter=>enter.append('circle'))
 				.attr("class", "switch")
-				.attr("stroke","none")
-				.attr("fill","red")
+				.attr("stroke","black")
+				.attr("stroke-width","1px")
+				.attr("fill","white")
 				.attr("cx",d=>this.xScale(d.time))
 				.attr("cy",this.height)
-				.attr("r",3)
+				.attr("r",5)
+			
+			let switchLabels = this.svg.selectAll('.switchLabel')
+				.data(this.graph.filter(entry=>entry.isSwitch))
+				.join(enter=>enter.append('text'))
+				.attr("class", "switchLabel")
+				.attr('font-family', 'FontAwesome')
+				.text("\uf2f1")
+			
+			
 				
 			
 			this.drawPosition()
