@@ -436,7 +436,7 @@ ShotterApp.component('drink-graph', {
 				      .attr('y',0)
 				      .attr('class','position')
 				 )
-				.attr('x',d=>5+this.xScale(new Date(d)))
+				.attr('x',d=>this.xScale(new Date(d))-5)
 		},
 		drawGraph(){
 			this.setUp()
