@@ -402,7 +402,7 @@ ShotterApp.component('drink-graph', {
 	methods: {
 		setUp() {
 			this.xScale = d3.scaleUtc()
-				.domain([this.graph[0].time,this.graph[this.graph.length-1].time])
+				.domain([0,this.graph[this.graph.length-1].time])
 				.range([0, this.width])
 
 			this.xAxis = d3.axisBottom(this.xScale)
