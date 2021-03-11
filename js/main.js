@@ -468,6 +468,8 @@ ShotterApp.component('drink-graph', {
 				.attr("stroke-width",3)
 				.attr("fill","none")
 				.attr("d", lineGenerator)
+			
+			this.drawPosition()
 
 		}
 	}
