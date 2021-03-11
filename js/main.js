@@ -466,6 +466,7 @@ ShotterApp.component('drink-graph', {
 				.attr("class", d=>`line ${d[0].name}`)
 				.attr("id", d=>`line-${d[0].name}`)
 				.attr("stroke", d=>this.colourScale(d[0].name[0]))
+				.attr("stroke-width",3)
 				.attr("fill","none")
 				.attr("d", lineGenerator)
 
