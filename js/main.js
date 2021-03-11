@@ -260,11 +260,12 @@ ShotterApp.component('map-entry',{
 	template: `
 		<li class="list-group-item d-flex justify-content-between align-items-center">
 			{{entry.player}}
+			<span :style="{color:colourScale(entry.player[0])}" style = "font-size:72px">•</span>&nbsp;
 			<span class="badge badge-pill" :class = "{'badge-primary': entry.character=='Harry'}">
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
 			</span>
-			<span :style="{color:colourScale(entry.player[0])}" style = "font-size:72">•</span>&nbsp;
+
 		</li>
 		`
 })
