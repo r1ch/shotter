@@ -485,6 +485,7 @@ ShotterApp.component('drink-graph', {
 				.join(enter=>enter.append('text'))
 				.attr("class", "switchLabel")
 				.attr("text-anchor", 'middle')
+				.attr("alignment-baseline", 'middle')
 				.attr("font-family", 'FontAwesome')
 				.attr("font-height", '1rem')
 				.attr("x",d=>this.xScale(d.time))
