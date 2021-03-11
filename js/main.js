@@ -29,7 +29,6 @@ const Shotter = {
 			if(this.socketAge > this.$options.timeout){
 				console.log(`Reconnecting stale socket, ${this.socketAge/1000} seconds since last message`)
 				// appears the socket has died?
-				
 				// reset the timeout
 				this.playstate.issuedAt = Date.now()
 				
@@ -211,15 +210,16 @@ const Shotter = {
 						></map-entry>
 					</ul>
 					<hr/>
-					<h6>Player entry</h6>
-					<textarea v-model="playersText"></textarea>
-					<h6>Spares</h6>
-					<input type = "text" v-model="overflow"/>
 					<drink-graph 
 						:graph = "graph"
 						:colourScale = "colourScale"
 						:position = "playstate.position"
 					></drink-graph>
+					<hr/>
+					<h6>Player entry</h6>
+					<textarea v-model="playersText"></textarea>
+					<h6>Spares</h6>
+					<input type = "text" v-model="overflow"/>
 				</div>
 				<div class = "col-8">
 					<h6>Imbibe</h6>
