@@ -183,7 +183,8 @@ const Shotter = {
 				})
 				return {
 					time: new Date(line.timeEpoch.from),
-					scores: Object.assign({},playerCounts)
+					scores: Object.assign({},playerCounts),
+					isSwitch: line.isSwitch
 				}
 			})
 		}
@@ -467,6 +468,17 @@ ShotterApp.component('drink-graph', {
 				.attr("stroke-width",3)
 				.attr("fill","none")
 				.attr("d", lineGenerator)
+			
+			let lines = this.svg.selectAll('.switch')
+				.data(this.graph)
+				.join(enter=>enter.append('circle'))
+				.attr("class", "switch")
+				.attr("stroke","none")
+				.attr("fill","red")
+				.attr("cx",d=>xScale(d.time))
+				.attr("cy",this.height)
+				.attr("r",1)
+				
 			
 			this.drawPosition()
 
