@@ -490,7 +490,6 @@ ShotterApp.component('drink-graph', {
 				.attr("font-height", '1rem')
 				.attr("x",d=>this.xScale(d.time))
 				.attr("y",this.height)
-				.attr("dy",".5rem")
 				.text("\uf01e")
 			
 			
