@@ -264,7 +264,7 @@ ShotterApp.component('map-entry',{
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
 			</span>
-			<span :style="{color:colourScale(entry.player[0]), "font-size":72}">•</span>&nbsp;
+			<span :style="{color:colourScale(entry.player[0]), 'font-size':72}">•</span>&nbsp;
 		</li>
 		`
 })
