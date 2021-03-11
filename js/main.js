@@ -215,6 +215,11 @@ const Shotter = {
 					<textarea v-model="playersText"></textarea>
 					<h6>Spares</h6>
 					<input type = "text" v-model="overflow"/>
+					<drink-graph 
+						:graph = "graph"
+						:colourScale = "colourScale"
+						:position = "playstate.position"
+					></drink-graph>
 				</div>
 				<div class = "col-8">
 					<h6>Imbibe</h6>
@@ -222,13 +227,6 @@ const Shotter = {
 							:line="line"
 					></recent-line>
 				</div>
-			</div>
-			<div class = "row">
-				<drink-graph 
-					:graph = "graph"
-					:colourScale = "colourScale"
-					:position = "playstate.position"
-				></drink-graph>
 			</div>
 		</div>
 	`
@@ -266,7 +264,7 @@ ShotterApp.component('map-entry',{
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
 				{{entry.character}}
 			</span>
-			<span :style="{color:colourScale(entry.player[0])}">•</span>&nbsp;
+			<span :style="{color:colourScale(entry.player[0]), "font-size":72}">•</span>&nbsp;
 		</li>
 		`
 })
@@ -373,7 +371,7 @@ ShotterApp.component('drink-graph', {
 		}
 	},
 	template: `
-		<div id = "d3" class = "col-12"></div>
+		<div id = "d3"></div>
     	`,
 	mounted : function(){
 		this.svg = d3.select("#d3")
