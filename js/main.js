@@ -469,17 +469,6 @@ ShotterApp.component('drink-graph', {
 				.attr("fill","none")
 				.attr("d", lineGenerator)
 			
-			let switches = this.svg.selectAll('.switch')
-				.data(this.graph.filter(entry=>entry.isSwitch))
-				.join(enter=>enter.append('circle'))
-				.attr("class", "switch")
-				.attr("stroke","none")
-				//.attr("stroke-width","1px")
-				.attr("fill","white")
-				.attr("cx",d=>this.xScale(d.time))
-				.attr("cy",this.height)
-				.attr("r",".5rem")
-			
 			let switchLabels = this.svg.selectAll('.switchLabel')
 				.data(this.graph.filter(entry=>entry.isSwitch))
 				.join(enter=>enter.append('text'))
