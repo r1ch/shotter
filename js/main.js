@@ -421,8 +421,8 @@ ShotterApp.component('drink-graph', {
 			
 			this.yAxis = d3.axisLeft(this.yScale)
 			
-			this.svg.select(".y")
-				.call(this.yAxis);
+			/*this.svg.select(".y")
+				.call(this.yAxis);*/
 			
 			this.ready = true;
 		},
