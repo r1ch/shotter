@@ -5,7 +5,7 @@ const Shotter = {
 			paused: true,
 			issuedAt: Date.now()
 		},
-		colourScale: d3.scaleOrdinal("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),d3.schemeCategory10),
+		colourScale: d3.scaleOrdinal([],d3.schemeCategory10),
 		playersText: ["Player 1", "Player 2"].join("\n"),
 		characters: ["Harry","Ron","Hermione"],
 		overflow: "Hogwarts Students",
