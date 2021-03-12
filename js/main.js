@@ -68,7 +68,7 @@ const Shotter = {
 		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
 		if(queryOptions.characters) this.characters = queryOptions.characters;
 		if(queryOptions.overflow) this.overflow = queryOptions.overflow
-		if(queryOptions.showGraph) this.file = queryOptions.showGraph
+		if(queryOptions.showGraph) this.showGraph = queryOptions.showGraph
 		if(queryOptions.file) this.file = queryOptions.file
 		else this.file = "lines/goblet.json"
 
