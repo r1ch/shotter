@@ -263,7 +263,7 @@ ShotterApp.component('map-entry',{
 	data: ()=>({}),
 	props: ["entry","colourScale"],
 	template: `
-		<li class="list-group-item list-group-item-light d-flex justify-content-between align-items-center" :style="{background:colourScale(entry.player[0])}">
+		<li class="list-group-item text-white d-flex justify-content-between align-items-center" :style="{background:colourScale(entry.player[0])}">
 			{{entry.player}}
 			<span class="badge badge-pill badge-light">
 				<i class="fas fa-bolt" v-if = "entry.character=='Harry'"></i>
