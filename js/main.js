@@ -457,13 +457,14 @@ ShotterApp.component('drink-graph', {
 				},[])
 			)
 			
-			let lineGenerator = d3.line()
+			let lineGenerator = defined => d3.line()
     				.x(d=>d.at)
     				.y(d=>this.yScale(d.total))
+				.defined(defined)
    				.curve(d3.curveMonotoneX)
 
 			
-			let lines = this.svg.selectAll('.line')
+			let linesPost = this.svg.selectAll('.line')
 				.data(timeSeries)
 				.join(enter=>enter.append('path'))
 				.attr("class", d=>`line ${d[0].name}`)
@@ -471,7 +472,17 @@ ShotterApp.component('drink-graph', {
 				.attr("stroke", d=>this.colourScale(d[0].name[0]))
 				.attr("stroke-width",3)
 				.attr("fill","none")
-				.attr("d", lineGenerator)
+				.attr("d", lineGenerator(d=>d.at>this.position))
+			
+			let linesPrior = this.svg.selectAll('.line')
+				.data(timeSeries)
+				.join(enter=>enter.append('path'))
+				.attr("class", d=>`line ${d[0].name}`)
+				.attr("id", d=>`line-${d[0].name}`)
+				.attr("stroke", d=>this.colourScale(d[0].name[0]))
+				.attr("stroke-width",1)
+				.attr("fill","none")
+				.attr("d", lineGenerator(d=>d.at<this.position))
 			
 			let switchLabels = this.svg.selectAll('.switchLabel')
 				.data(this.graph.filter(entry=>entry.isSwitch))
