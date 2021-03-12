@@ -229,6 +229,7 @@ const Shotter = {
 					<h6>Imbibe</h6>
 					<recent-line v-on:drink="drink" v-for = "line in recentLines" :key = "line.lineNumber"
 							:line="line"
+							:colourScale="colourScale"
 					></recent-line>
 				</div>
 			</div>
@@ -276,7 +277,7 @@ ShotterApp.component('map-entry',{
 
 ShotterApp.component('recent-line', {
 	data: () => ({}),
-	props: ["line"],
+	props: ["line","colourScale"],
 	methods: {
 		playerForCharacter(character){
 			let entry = this.line.playerMap.find(entry=>entry.character==character)
@@ -333,7 +334,7 @@ ShotterApp.component('recent-line', {
 	      <div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">
-		  <span v-for = "(count, character) in inPlayTokens" :key="character" href="#" class="card-link">
+		  <span v-for = "(count, character) in inPlayTokens" :key="character" href="#" class="card-link" :style="color:colourScale(playerForCharacter(character)[0])">
 			<i class="fas fa-glass-cheers"></i> <span class="badge badge-pill badge-primary" v-if="count.local>1">{{count.local}}</span> {{playerForCharacter(character)}}
 		  </span>
 		</h6>
