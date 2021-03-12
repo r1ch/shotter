@@ -213,7 +213,7 @@ const Shotter = {
 							:colourScale = "colourScale"
 						></map-entry>
 					</ul>
-					<hr/>
+					<hr v-if="showGraph"/>
 					<drink-graph v-if = "showGraph"
 						:graph = "graph"
 						:colourScale = "colourScale"
