@@ -476,6 +476,7 @@ ShotterApp.component('drink-graph', {
 				.attr("text-anchor", 'middle')
 				.attr("alignment-baseline", 'middle')
 				.attr("font-size", '10px')
+				.attr("font-family", 'FontAwesome')
 				.attr("font-weight", 900)
 				.attr("x",d=>this.xScale(d.time))
 				.attr("y",this.height)
