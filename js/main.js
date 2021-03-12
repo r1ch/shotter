@@ -472,7 +472,10 @@ ShotterApp.component('drink-graph', {
 				.attr("stroke", d=>this.colourScale(d[0].name[0]))
 				.attr("stroke-width",3)
 				.attr("fill","none")
-				.attr("d", lineGenerator(d=>d.at>new Date(this.position)))
+				.attr("d", lineGenerator(d=>{
+					console.log(d)
+					d.at>new Date(this.position)
+				}))
 			
 			let linesPrior = this.svg.selectAll('.line')
 				.data(timeSeries)
