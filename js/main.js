@@ -10,6 +10,7 @@ const Shotter = {
 		characters: ["Harry","Ron","Hermione"],
 		overflow: "Hogwarts Students",
 		file: "",
+		showGraph: false,
 		lines: [],
 		now: Date.now(),
 		lastMessageReceived: Date.now()
@@ -46,7 +47,8 @@ const Shotter = {
 			characters: {isList:true},
 			server: {isList:false},
 			room: {isList:false},
-			file: {isList:false}
+			file: {isList:false},
+			showGraph: {isList: false}
 		};
 		const queryOptions = {};
 		if(window.location.search){
@@ -66,6 +68,7 @@ const Shotter = {
 		if(queryOptions.players) this.playersText = queryOptions.players.join("\n");
 		if(queryOptions.characters) this.characters = queryOptions.characters;
 		if(queryOptions.overflow) this.overflow = queryOptions.overflow
+		if(queryOptions.showGraph) this.file = queryOptions.showGraph
 		if(queryOptions.file) this.file = queryOptions.file
 		else this.file = "lines/goblet.json"
 
@@ -211,7 +214,7 @@ const Shotter = {
 						></map-entry>
 					</ul>
 					<hr/>
-					<drink-graph 
+					<drink-graph v-if = "showGraph"
 						:graph = "graph"
 						:colourScale = "colourScale"
 						:position = "playstate.position"
