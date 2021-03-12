@@ -474,7 +474,7 @@ ShotterApp.component('drink-graph', {
 				.attr("fill","none")
 				.attr("d", lineGenerator(d=>{
 					console.log(d)
-					d.at>new Date(this.position)
+					return d.at > new Date(this.position)
 				}))
 			
 			let linesPrior = this.svg.selectAll('.line')
